@@ -7,3 +7,24 @@ Cypherpunks write code.
 We know that someone has to write software to defend privacy, and since we can't get privacy unless we all do, we're going to write it.
  We publish our code so that our fellow Cypherpunks may practice and play with it. 
 
+---------------------------------
+#
+The Paranoid's Bible :
+https://paranoidsbible.tumblr.com/post/160173700334/the-paranoids-bible-20
+#
+OSint tools 
+https://github.com/jivoi/awesome-osint
+https://github.com/digitaldisarray/OSINT-Tools
+
+---------
+Small about me: 
+OS currently using (2)
+-Qubes OS
+https://www.qubes-os.org/
+
+-Artix (OpenRC with XFCE)
+https://artixlinux.org/
+##
+Gpg key is on 
+gpg.mit.edu 
+{CS6-key}
