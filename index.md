@@ -1,9 +1,9 @@
-## Welcome 
-This website is hosted by me
-=> it will be used to host links 
-=> blogs 
-=> maybe more
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/C3866S/c3866s.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Privacy is necessary for an open society in the electronic age. 
+Privacy is not secrecy. A private matter is something one doesn't want the whole world to know, but a secret matter is something one doesn't want anybody to know.
+ Privacy is the power to selectively reveal oneself to the world.
+ We cannot expect governments, corporations, or other large, faceless organizations to grant us privacy out of their beneficenceWe must defend our own privacy if we expect to have any. 
+We must come together and create systems which allow anonymous transactions to take place. 
+Cypherpunks write code. 
+We know that someone has to write software to defend privacy, and since we can't get privacy unless we all do, we're going to write it.
+ We publish our code so that our fellow Cypherpunks may practice and play with it. 
 
