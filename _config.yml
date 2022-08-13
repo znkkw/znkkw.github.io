@@ -1,4 +1,4 @@
-title: brainfucksec
+title: c3866s
 description: "Cybersec | Privacy | Linux | Cryptography"
 author:
   name: "c3866s"
@@ -32,10 +32,10 @@ owner : "c"
 year : "2022"
 
 # thanks tocttou for this theme
-remote_theme: tocttou/hacker-blog
+#remote_theme: tocttou/hacker-blog
 
 # jekyll serve options
-port: 8880 #local server port
+#port: 8880 #local server port
 
 #thank you brainfucksec ! <3
 #https://brainfucksec.github.io/
