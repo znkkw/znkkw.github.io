@@ -35,7 +35,7 @@ year : "2022"
 
 # thanks tocttou for this theme
 remote_theme: tocttou/hacker-blog
-gem 'jekyll-theme-hacker', group: :jekyll_plugins
+
 # jekyll serve options
 port: 8880 #local server port
 
