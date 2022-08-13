@@ -1,18 +1,20 @@
 ---
 layout: page
-title: whoami | brainfucksec
+title: whoami | c3866s
 ---
 
 ```term
 whoami
 ```
 
-Hi, I am `brainf+ck` and I am a Hacker, not for skills, I definitely have a long way to go, but I am a Hacker because I try to understand how things work, and I try to improve them, whether it is an operating system, a program or an object that I use everyday.
+Hello friend, I am  `c3866s` and I am a Cypherpunk,many people tell to me that I am a Hacker (to some extend it's true), but there's still a long way to go to be one.As a Hacker you are the elite of Computer Science.
 
-My studies are mainly about Operating Systems, Penetration Testing and Networking, I like to study an operating system, or a system in general, and solve its security issues.
+My interest are mainly about Operating Systems, Pentensting on Networks,so that also results in Networking.
 
-I use almost exclusively GNU/Linux Operating Systems, and I have been an Arch Linux user for years, Arch Linux philosophy has led me to know the KISS principle, which I try to apply in programming and in problem solving, simple concept but very complex to master.
-I'm a supporter of Free Open Source Software, the basic concept is: if you can't read the source code of an application, you can't know what it really does once started (unless reverse engineering is performed on the code).
+I am a radical user of GNU/Linux OS's, and I have to admit that I distro hopped a lot. My first distro of all time was Arch Linux, but I was to unexperienced to use it correctly,then I switched to Linux Mint,then it was Debian and now I am dualbooting [Artix Linux](https://artixlinux.org/) with [Qubes OS](https://www.qubes-os.org/).
 
-I have a particular interest in alternative and decentralized networks such as Tor and P2P networks, because I think that the Internet as we know it today is no longer sustainable in terms of privacy and security, and we need an alternative solution.
+I'm an advocate and supporter for [FOSS](https://wikiless.tiekoetter.com/wiki/Free_and_open-source_software?lang=en)
+
+I have a particular interest in alternative/decentralized/mesh networks like [TOR](https://www.torproject.org/) or [i2p](https://geti2p.net/en/), because the Internet as we know is no longer secure, sustainable and sufficient *and* we need an solution for it. 
+
 
