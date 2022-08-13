@@ -1,4 +1,4 @@
-title: brainfucksec
+title: c3866s
 description: "Cybersec | Privacy | Linux | Cryptography"
 author:
   name: "c3866s"
@@ -23,16 +23,14 @@ defaults:
 
 future: true
 plugins:
-  - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-sitemap
+- jekyll-remote-theme
 
 # Custom variables
 owner : "c"
 year : "2022"
 
 # thanks tocttou for this theme
-remote_theme: tocttou/hacker-blog
+remote_theme: pages-themes/hacker@v0.2.0
 
 # jekyll serve options
 port: 8880 #local server port
