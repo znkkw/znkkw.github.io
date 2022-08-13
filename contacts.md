@@ -1,14 +1,12 @@
 ---
 layout: page
-title: contacts | brainfucksec
+title: contacts | c3866s
 ---
 
 ```term
 contact me
 ```
 
-Email:  `brainfucksec[at]pm.me`
-
-XMPP:   `brainfucksec@0day.im`
-
-Also you can find me on GitHub: [brainfucksec](https://github.com/brainfucksec)
+Email:  `cmaximus@disroot.org`
+XMPP:   `csec@0day.im`
+Also you can find me on GitHub: [c3866s](https://github.com/c3866s)
