@@ -1,10 +1,8 @@
  ---
  layout: page
- title: devel | c3866s
+ title: projects | c3866s
  ---
-   ```term
-  devel | projects
-  ```
+ 
  ### These are my repos on [Github](https://github.com/C3866S?tab=repositories)feel free to use it:
  [This-site](https://github.com/C3866S/c3866s.github.io)
 
