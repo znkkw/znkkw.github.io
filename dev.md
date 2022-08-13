@@ -13,10 +13,10 @@ devel | projects
 
 [VIM](https://github.com/C3866S/-VimConfigs) >> a simple config for VIM and NVIM 
 
-[DWM] (https://github.com/C3866S/dwmcsgentoo) >>dwm - dynamic window manager
+[DWM](https://github.com/C3866S/dwmcsgentoo) >>dwm - dynamic window manager
 dwm is an extremely fast, small, and dynamic window manager for X.
-They belong too [1](https://github.com/C3866S/dmenu)[2](https://github.com/C3866S/slstatus)[3]()https://github.com/C3866S/stgentoo
+They belong too [1](https://github.com/C3866S/dmenu)[2](https://github.com/C3866S/slstatus)[3](https://github.com/C3866S/stgentoo)
 
 [Books-in-German](https://github.com/C3866S/BucherzurHifle)
 
-[Networking-GE])(https://github.com/C3866S/Netzwerktechnik-Cybersec)
+[Networking-GE](https://github.com/C3866S/Netzwerktechnik-Cybersec)
