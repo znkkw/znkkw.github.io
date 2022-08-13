@@ -32,12 +32,10 @@ owner : "c"
 year : "2022"
 
 # thanks tocttou for this theme
-remote_theme: pages-themes/hacker@v0.2.0
-plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+remote_theme: tocttou/hacker-blog
 
 # jekyll serve options
-port: 8000 #local server port
+port: 8880 #local server port
 
 #thank you brainfucksec ! <3
 #https://brainfucksec.github.io/
