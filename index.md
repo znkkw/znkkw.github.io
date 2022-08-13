@@ -1,8 +1,12 @@
 ---
 layout: page
-title: home | brainfucksec
+title: home | c3866s
 ---
 
 ```term
-~ $ ./hellofriend
+#include <iostream>
+int main() {
+    std::count <<"Hello friend" ;
+    return 0;
+}
 ```
