@@ -1,0 +1,10 @@
+
+.jekyll-cache
+.jekyll-metadata
+*.backup
+_site
+.sass-cache
+Gemfile.lock
+*.gem
+.jekyll-cache
+Footer
