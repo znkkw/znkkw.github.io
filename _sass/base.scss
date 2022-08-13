@@ -154,7 +154,7 @@ pre {
   color: #b5e853;
   border-radius: 2px;
   //does it make sense to use text wrap instead of word wrap we will see
-  text-wrap: normal;
+  word-wrap: normal;
   overflow: auto;
   overflow-y: hidden;
 }
