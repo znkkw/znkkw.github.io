@@ -15,6 +15,6 @@ I am a radical user of GNU/Linux OS's, and I have to admit that I distro hopped 
 
 I'm an advocate and supporter for [FOSS](https://wikiless.tiekoetter.com/wiki/Free_and_open-source_software?lang=en)
 
-I have a particular interest in alternative/decentralized/mesh networks like [TOR](https://www.torproject.org/) or [i2p](https://geti2p.net/en/), because the Internet as we know is no longer secure, sustainable and sufficient *and* we need an solution for it. 
+I have a particular interest in alternative/decentralized/mesh networks like [TOR](https://www.torproject.org/) or [i2p](https://geti2p.net/en/), because the Internet as we know is no longer secure, sustainable and sufficient *and* we need a solution for it. 
 
 
