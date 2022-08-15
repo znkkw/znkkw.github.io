@@ -11,7 +11,7 @@ Hello friend, I am  `c3866s` and I am a Cypherpunk,many people tell to me that I
 
 My interest are mainly about Operating Systems, pentensting on networks,so that also results in network engineering | networking.
 
-I am a radical user of GNU/Linux OS's, and I have to admit that I distro hopped a lot. My first distro of all time was Arch Linux, but I was too unexperienced to use it, after that I switched to Linux Mint,then it was Debian and now I am dualbooting [Artix Linux](https://artixlinux.org/) with [Qubes OS](https://www.qubes-os.org/).
+I am a radical user of [GNU](https://www.gnu.org/)/[Linux](https://www.linux.org/pages/download/) OS's, and I have to admit that I distro hopped a lot. My first distro of all time was [Arch Linux](https://archlinux.org/), but I was too unexperienced to use it, after that I switched to [Linux Mint](https://linuxmint.com/),then it was [Debian](https://www.debian.org/) and now I am dualbooting [Artix Linux](https://artixlinux.org/) with [Qubes OS](https://www.qubes-os.org/).
 
 I'm an advocate and supporter for [FOSS](https://wikiless.tiekoetter.com/wiki/Free_and_open-source_software?lang=en)
 
