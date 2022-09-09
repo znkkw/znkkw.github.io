@@ -81,7 +81,7 @@ Any reagrds **do your own research!**,if something is missing or wrong please [c
 * [Thunderbird](https://www.thunderbird.net/)
 * [Mutt/NeoMutt](https://neomutt.org/)
 * [Claws-Mail](https://www.claws-mail.org/)
-–––––––––––––––
+
 ### Mobile 
 
 * [K-9Mail](https://f-droid.org/en/packages/com.fsck.k9/)
@@ -177,7 +177,6 @@ Any reagrds **do your own research!**,if something is missing or wrong please [c
 ### Video Sharing Alternatives
 * [Invidious](https://invidious.io/)
 * [Piped](https://piped.kavin.rocks/)
-–––––––––––––––––––––––––––––––––––––––––
 * [BitTube](https://bittube.video/)
 * [PeerTube](https://joinpeertube.org/en/)
 * [DTube](https://d.tube/)
