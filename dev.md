@@ -1,7 +1,4 @@
- ---
- layout: page
- title: projects | c3866s
- ---
+
  
  ### These are my repos on [Github](https://github.com/C3866S?tab=repositories)feel free to use it:
  [This-site](https://github.com/C3866S/c3866s.github.io)
