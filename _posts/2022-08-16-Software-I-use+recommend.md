@@ -65,7 +65,7 @@ Any reagrds **do your own research!**,if something is missing or wrong please [c
 
 
 ## Shell 
-* I use [zshell](https://ohmyz.sh/) on my arch system.The rice is from [denshi](denshi.org) thanks man <3
+* I use [zshell](https://ohmyz.sh/) on my arch system.The rice is from [denshi](https://denshi.org/) thanks man <3
 
 
 ## Browsers
