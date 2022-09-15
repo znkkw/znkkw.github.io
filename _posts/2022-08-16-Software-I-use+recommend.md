@@ -25,7 +25,7 @@ Any reagrds **do your own research!**,if something is missing or wrong please [c
 * Can easily be modified
 * Clear references
 * Privacy Policy has to be easily accessible
-* Not sharing data with data with databrokers nor bad third-parties
+* Not sharing data with databrokers nor bad third-parties
 * Project has to be maintained and updated regularly 
 
 <br>
