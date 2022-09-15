@@ -70,7 +70,7 @@ Any reagrds **do your own research!**,if something is missing or wrong please [c
 
 ## Browsers
 
-* [Firefox](https://www.mozilla.org/en-US/firefox/new/) there is a problem... it has to be hardnened via [ffprofile](https://ffprofile.com/) or manual hardening with about:conf {don't worry dear reader a guide how to harden firefox will come}
+* [Firefox](https://www.mozilla.org/en-US/firefox/new/) there is a problem... it has to be hardnened via [ffprofile](https://ffprofile.com/) or manual hardening with about:config {don't worry dear reader a guide how to harden firefox will come}
 * [Librewolf](https://librewolf.net/)
 * [Chromium](https://www.chromium.org/)
 * [Tor-Browser](https://www.torproject.org/download/)
