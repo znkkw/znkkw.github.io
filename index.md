@@ -22,7 +22,7 @@ GPG Key Fingerprint: 5BD0CEB708D3CE700B3DF7DEC802618B962F0DC6
 -------------------------------------------------------------------------
 
 
-! [alt text](uploads/img/posts/img.png)
+![alt text](uploads/img/posts/img.png)
 
 
 
