@@ -11,7 +11,7 @@ int main() {
 }
 ```
 ```term
-GPG Key Fingerprint: 5BD0CEB708D3CE700B3DF7DEC802618B962F0DC6
+GPG Key Fingerprint: D340CB3DBF5240563E8607C3BFFEDFB2A1865027
 ```
 --------------------------------------------------------------------------
 **[IMPORTANT MESSAGE]**
