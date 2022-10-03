@@ -29,6 +29,6 @@ GPG Key Fingerprint: D340CB3DBF5240563E8607C3BFFEDFB2A1865027
 -------------------------------------------------------------------------
 ```term
 Donations: 
-* BTC: bc1q0y46vzcul9lghhh2w2vup82hftqtv6uzfqdlpe
-* XMR: 83Ns4RQit1bYB7fhhTfubtDHpotjjfVrJKwCoE1ycnYeDpWVCWbkH2uM1SX1bLKRzu2o4wzLpmUWr9uyMhnyX3g3C52CRkR
+* BTC: bc1qkwhsjyrjp9zp3alc5wu2pm34q53wgp2znpnud4
+* XMR: 83ip9w6NgQrFgtVtYY2bk1ajTPC5HkzkfF9h7oiBJ7B8Ly8CKWY3Q95SjQSd1rY2b1GGYgqztBygX8Gaay9yh86YVFEdYBH
 ```
