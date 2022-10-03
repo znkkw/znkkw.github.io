@@ -5,6 +5,9 @@ title: GPG | c3866s
 ```term
 My gpg key 
 ```
+
+
+
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGMTHQwBEACpePi7Vj7yNClkWcwk9xOrdaSv4MsD/eep3pkikEdn42vk90sn
@@ -56,8 +59,4 @@ SiF+Pj1X9Xg70DWw3jlmjlgyhqy4RNj2Bw5qdkiJrgNUIg16lC6edAdLnNcNdgBw
 BTcmfcsr3EG5FXmQi3CaW/5gFpdQ0UWpNYrboo7lSDOYZYHvDBgf7JaF4ENhUSky
 d5I3qlVEZxNzmqlvdOdQLF3Ciw==
 =Bn6B
-
-
 -----END PGP PUBLIC KEY BLOCK-----
-
-
