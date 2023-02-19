@@ -196,7 +196,7 @@ A Type 2 hypervisor on a host OS is also susceptible to host OS compromise.
 The market offers a range of virtualization security products that can scan and patch VMs for malware, encrypt entire VM virtual disks, and control and audit VM access.
 
 
-## Gudie to isntall KVM [Arch](https://archlinux.org)
+## Guide to install KVM on [Arch](https://archlinux.org)
 ## Checking support for KVM
 
 **Hardware support**
