@@ -11,7 +11,7 @@ int main() {
 }
 ```
 ```term
-GPG Key Fingerprint: D340CB3DBF5240563E8607C3BFFEDFB2A1865027
+GPG Key Fingerprint: revoked
 ```
 --------------------------------------------------------------------------
 **[IMPORTANT MESSAGE]**
@@ -21,14 +21,9 @@ GPG Key Fingerprint: D340CB3DBF5240563E8607C3BFFEDFB2A1865027
 
 -------------------------------------------------------------------------
 
-
-![alt text](uploads/img/posts/img.png)
-
-
-
 -------------------------------------------------------------------------
 ```term
 Donations: 
-* BTC: bc1qkwhsjyrjp9zp3alc5wu2pm34q53wgp2znpnud4
-* XMR: 83ip9w6NgQrFgtVtYY2bk1ajTPC5HkzkfF9h7oiBJ7B8Ly8CKWY3Q95SjQSd1rY2b1GGYgqztBygX8Gaay9yh86YVFEdYBH
+* BTC: //
+* XMR: //
 ```
