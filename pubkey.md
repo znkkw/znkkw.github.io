@@ -6,7 +6,9 @@ title: GPG | c3866s
 My gpg key 
 ```
 
+** [ATTENTION CITIZEN] ***
 
+Pubkey available at my [github](https://github.com/c3866s/)
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
