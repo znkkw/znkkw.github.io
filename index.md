@@ -11,19 +11,12 @@ int main() {
 }
 ```
 ```term
-GPG Key Fingerprint: revoked
+GPG Key Status : revoked
 ```
 --------------------------------------------------------------------------
-**[IMPORTANT MESSAGE]**
-- Most of my code will be uploaded on [codeberg](https://codeberg.org/c3866s) and [github](https://github.com/c3866s)
 
-**[DONT TRUST THE GOVERNMENT](https://briarproject.org/)**
+**[DONT TRUST THE GOVERNMENT](https://gentoo.org/)**
 
 -------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
-```term
-Donations: 
-* BTC: //
-* XMR: //
-```
