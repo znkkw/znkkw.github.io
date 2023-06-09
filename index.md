@@ -17,7 +17,6 @@ GPG Key Status : revoked
 
 **[DONT TRUST THE GOVERNMENT](https://gentoo.org/)**
 
-![alt text](uploads/wbring/gentoo-badge.png)]
 -------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
