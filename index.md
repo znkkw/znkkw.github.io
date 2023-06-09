@@ -11,7 +11,7 @@ int main() {
 }
 ```
 ```term
-GPG Key Status : revoked
+GPG Key Status : active
 ```
 --------------------------------------------------------------------------
 
