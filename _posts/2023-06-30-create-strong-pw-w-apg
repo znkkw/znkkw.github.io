@@ -76,9 +76,9 @@ apg   [-a algorithm] [-r file]
                  1 - random password generation according to
                      password modes
                  0 - pronounceable password generation
--n num_of_pass  generate num_of_pass passwords
--m min_pass_len minimum password length
--x max_pass_len maximum password length
+-n  num_of_pass  generate num_of_pass passwords
+-m  min_pass_len minimum password length
+-x  max_pass_len maximum password length
 -s              ask user for a random seed for password
                 generation
 -c cl_seed      use cl_seed as a random seed for password
