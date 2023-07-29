@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Android FOSS Apps List"
-date: 2023-08-15
+date: 2023-08-01
 ---
 
 Update: 18 November 2022
