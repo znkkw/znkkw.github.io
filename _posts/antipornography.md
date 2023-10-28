@@ -16,9 +16,11 @@ Most people with no cultural or religious adversity to porn would be forgiven fo
 Like any other addiction, Pornography acts as a tool to **drain time and energy** from anyone that is dependent on it. Even if one were able to surpass all of the documented physical and psychological effects of pornography, they wouldn't be able to escape the fundamental issue that addictions are a massive waste of resources.
 
 The effects of porn on the **mind and body** include:
-*[Worse cognitive abilities](https://www.yourbrainonporn.com/relevant-research-and-articles-about-the-studies/porn-use-sex-addiction-studies/studies-linking-porn-use-to-poorer-mental-emotional-health-poorer-cognitive-outcomes/)
-*[Effects on neuroplasticity](https://journal.media-culture.org.au/index.php/mcjournal/article/view/773)
-*[Sexual dysfunctions]([)](https://www.yourbrainonporn.com/relevant-research-and-articles-about-the-studies/porn-use-sex-addiction-studies/studies-linking-porn-use-or-porn-sex-addiction-to-sexual-dysfunctions-and-poorer-sexual-and-relationship-satisfaction/#less)https://www.yourbrainonporn.com/relevant-research-and-articles-about-the-studies/porn-use-sex-addiction-studies/studies-linking-porn-use-or-porn-sex-addiction-to-sexual-dysfunctions-and-poorer-sexual-and-relationship-satisfaction/#less
+* [Worse cognitive abilities](https://www.yourbrainonporn.com/relevant-research-and-articles-about-the-studies/porn-use-sex-addiction-studies/studies-linking-porn-use-to-poorer-mental-emotional-health-poorer-cognitive-outcomes/)
+  
+* [Effects on neuroplasticity](https://journal.media-culture.org.au/index.php/mcjournal/article/view/773)
+  
+* [Sexual dysfunctions](https://www.yourbrainonporn.com/relevant-research-and-articles-about-the-studies/porn-use-sex-addiction-studies/studies-linking-porn-use-or-porn-sex-addiction-to-sexual-dysfunctions-and-poorer-sexual-and-relationship-satisfaction/#less)https://www.yourbrainonporn.com/relevant-research-and-articles-about-the-studies/porn-use-sex-addiction-studies/studies-linking-porn-use-or-porn-sex-addiction-to-sexual-dysfunctions-and-poorer-sexual-and-relationship-satisfaction/#less
 
 One of the most dangerous effects of porn is on one's neuroplasticity. This means anything from reduced attention spans to a change in taste regarding art, music or literature. Porn, like any addiction, can radically warp your perception of reality.
 
