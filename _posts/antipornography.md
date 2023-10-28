@@ -28,17 +28,21 @@ More exhaustive documentation of pornography and its effects on the human brain 
 
 
 ##Pornography harms relationships
+
 Porn isn't just harmful to its users, either; Relationships can be ruined when one or both parties consume porn. As mentioned earlier, porn use can cause sexual dysfunctions and reduce one's interest in their companion. Pornography has repeatedly been linked to sexual aggression, which may cause abuse in the relationship. More so, the high prevalence of female degradation in pornography may warp male porn users' views on the opposite sex. Porn also increases the chances of adultery in couples.
 
 ##Pornography is an evil industry
+
 Some may view porn as a valid industry and employer, giving work to thousands of men and women. However, the porn industry is actually a monopoly of fraud, scandal and abuse. No amount of jobs or tax revenue can ever justify the atrocities committed by pornography distributors.
 
 #Mindgeek 
+
 The porn market online is dominated by a single firm; the elusive "Mindgeek" is a secretive company that owns most of the major internet porn websites, such as Pornhub, YouPorn, RedTube and Brazzers. Mindgeek's most popular site, PornHub, has been found to host child pornography, rape, sexual abuse and human trafficking.
 
 Mindgeek tries its best to avoid the authorities; It goes to numerous lengths to stop individuals from reporting violating content from its platform. This is because websites like PornHub actively profit off rape.
 
 # "Independent" Pornography
+
 Porn produced by individuals and distributed through internet platforms such as Twitter, Discord or OnlyFans has the same negative effects as all other porn. In addition to this, concept of porn as social media introduces a variety of additional problems:
 
 The platforms used to host "independent" pornography are just as corrupt as the bigger, centralized porn platforms. Twitter and Discord are hubs for child grooming, child pornography and zoophilia. Both websites have a poorly-designed and obscure reporting system that makes it difficult for users to report others for sexual abuse and illegal pornography; This is made even more alarming due to the higher presence of minors on these platforms.
