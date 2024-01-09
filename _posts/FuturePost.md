@@ -41,7 +41,7 @@ Alternatively, use an up-to-date iPhone, which is comparable to GrapheneOS on a 
 [Browser](#browser)
 -------------------
 
-For security, use Chromium. Avoid Firefox or browsers based on it, as they are currently [very lacking in security](firefox-chromium.html). Microsoft Edge is a better choice for Windows users, as it can utilise [Microsoft Defender Application Guard](https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-application-guard/md-app-guard-overview) (MDAG) and has an [enhanced security mode](https://microsoftedge.github.io/edgevr/posts/Introducing-Enhanced-Security-for-Microsoft-Edge/) in which JIT is disabled and mitigations such as ACG, CIG, CFG and CET are all enabled in the renderer process.  
+For security, use Chromium. Avoid Firefox or browsers based on it, again if you are a normie, as they are currently [very lacking in security](firefox-chromium.html). Microsoft Edge is a better choice for Windows users, as it can utilise [Microsoft Defender Application Guard](https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-application-guard/md-app-guard-overview) (MDAG) and has an [enhanced security mode](https://microsoftedge.github.io/edgevr/posts/Introducing-Enhanced-Security-for-Microsoft-Edge/) in which JIT is disabled and mitigations such as ACG, CIG, CFG and CET are all enabled in the renderer process.  
   
 For privacy, use the Tor Browser, and consider using the security slider. Do not assume that "hardening" Firefox or other browsers will make it private; [it won't](browser-tracking.html). Be aware that this has massively reduced security from other options, as mentioned above.  
   
