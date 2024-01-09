@@ -649,8 +649,6 @@ On the search bar digit: `about:config` and set the parameters as follows:
 If you want (is recommended), you can use the `user.js` file with the settings of this guide or with your preferred settings, it is recommended to create a new profile for this purpose.
 Before using the file check the entries and modify/add them according to your preferences, don't copy/paste without know what you are doing.
 
-Download the `user.js` template from my [GitHub gist](https://gist.github.com/brainfucksec/68e79da1c965aeaa4782914afd8f7fa2), note that this user.js is configured for Linux systems, so if you use Windows or macOS edit, comment/uncomment the relevant entries according to the instructions listed above.
-
 More information about Firefox user.js:
 
  * [mozillaZine - User.js file](https://kb.mozillazine.org/User.js_file)
@@ -730,7 +728,7 @@ There are come resources where you can test your browser to see how unique it is
 ## Recommendations:
 
 Take this guide as a starting point and learn about the meaning of the various options, configuring Firefox parameters is a fairly complex topic.
-Although I do my best so that there are not, there may be errors or inaccuracies in this guide, so don't blindly copy/paste, and if you find something wrong I invite you to [contact me](https://brainfucksec.github.io/contacts) to fix the problem.
+Although I do my best so that there are not, there may be errors or inaccuracies in this guide, so don't blindly copy/paste, and if you find something wrong I invite you to [contact me](https://znkkw.github.io/contacts) to fix the problem.
 Your security depends not only on technical countermeasures, but also on how you behave online, so search for information, compare them, and **think with you head**.
 
 ---
