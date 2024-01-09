@@ -3,7 +3,7 @@
 Linux Hardening Guide
 =====================
 
-[Linux is not a secure operating system](../Linux.md). However, there are steps you can take to improve it. This guide 
+[Linux is not a secure operating system](../Linux). However, there are steps you can take to improve it. This guide 
 aims to explain how to harden Linux as much as possible for security and privacy. This guide attempts to be distribution 
 agnostic and is not tied to any specific one.  
   
@@ -102,7 +102,7 @@ LTS](#stable-vs-lts)
 
 There are many factors that go into choosing a good Linux distribution.
 
-*   Avoid distributions that freeze packages, as [they are often quite behind on security updates](Linux.md#stable-release-models).
+*   Avoid distributions that freeze packages, as [they are often quite behind on security updates](Linux#stable-release-models).
     Use a distribution with an init system other than [systemd](https://systemd.io/). systemd contains a lot of
     unnecessary attack surface and [inserts a considerable amount of complexity into the most privileged user space
     component](https://www.agwa.name/blog/post/how_to_crash_systemd_in_one_tweet); [it attempts to do far more things
@@ -182,7 +182,7 @@ Despite the value of `dmesg_restrict`, the kernel log will still be displayed in
     kernel.unprivileged_bpf_disabled=1
     net.core.bpf_jit_harden=2
 
-[eBPF exposes quite large attack surface](../Linux.md#kernel). As such, it must be restricted. These sysctls restrict eBPF to the `CAP_BPF` [capability](#capabilities) (`CAP_SYS_ADMIN` on kernel versions prior to 5.8) and enable JIT hardening techniques, such as [constant blinding](https://github.com/torvalds/linux/blob/9e4b0d55d84a66dbfede56890501dc96e696059c/include/linux/filter.h#L1039-L1070).
+[eBPF exposes quite large attack surface](../Linux#kernel). As such, it must be restricted. These sysctls restrict eBPF to the `CAP_BPF` [capability](#capabilities) (`CAP_SYS_ADMIN` on kernel versions prior to 5.8) and enable JIT hardening techniques, such as [constant blinding](https://github.com/torvalds/linux/blob/9e4b0d55d84a66dbfede56890501dc96e696059c/include/linux/filter.h#L1039-L1070).
 
     dev.tty.ldisc_autoload=0
 
@@ -202,7 +202,7 @@ The [SysRq key](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html) e
 
     kernel.unprivileged_userns_clone=0
 
-User namespaces are a feature in the kernel which aim to improve sandboxing and make it easily accessible for unprivileged users. However, [this feature exposes significant kernel attack surface for privilege escalation](../linux.html#kernel), so this sysctl restricts the usage of user namespaces to the `CAP_SYS_ADMIN` [capability](#capabilities). For unprivileged sandboxing, it is instead recommended to use a setuid binary with little attack surface to minimise the potential for privilege escalation. This topic is covered further in the [sandboxing section](#application-sandboxing).  
+User namespaces are a feature in the kernel which aim to improve sandboxing and make it easily accessible for unprivileged users. However, [this feature exposes significant kernel attack surface for privilege escalation](../Linux#kernel), so this sysctl restricts the usage of user namespaces to the `CAP_SYS_ADMIN` [capability](#capabilities). For unprivileged sandboxing, it is instead recommended to use a setuid binary with little attack surface to minimise the potential for privilege escalation. This topic is covered further in the [sandboxing section](#application-sandboxing).  
   
 Be aware though that this sysctl only exists on certain Linux distributions, as it requires a kernel patch. If your kernel does not include this patch, you can alternatively disable user namespaces completely (including for root) by setting `user.max_user_namespaces=0`.
 
@@ -559,7 +559,7 @@ A sandbox allow you to run a program in an isolated environment that has either 
   
 It is recommended to use [bubblewrap](https://github.com/containers/bubblewrap) in a separate user account along with [AppArmor or SELinux](#mac) to sandbox programs. You could also consider using [gVisor](#gvisor) instead, which has the advantage of providing each guest with its own kernel.  
   
-Either of these can be used to create a very powerful sandbox with minimal attack surface exposed. If you do not wish to create sandboxes yourself, consider using Whonix's [sandbox-app-launcher](https://www.whonix.org/wiki/Sandbox-app-launcher) once it is complete. [You should not use Firejail](../Linux.md#firejail).  
+Either of these can be used to create a very powerful sandbox with minimal attack surface exposed. If you do not wish to create sandboxes yourself, consider using Whonix's [sandbox-app-launcher](https://www.whonix.org/wiki/Sandbox-app-launcher) once it is complete. [You should not use Firejail](../Linux#firejail).  
   
 Container solutions, such as [Docker](https://www.docker.com/) and [LXC](https://linuxcontainers.org/), are often used as a misguided form of sandboxing. These are too permissive as to support a wide variety of applications, so they cannot be considered a strong application sandbox.
 
@@ -791,7 +791,7 @@ Certain distributions run Xorg as the root user by default. This is an issue bec
 
 ### [8.7 Accessing root securely](#accessing-root-securely)
 
-There are a [wide range of methods that malware can use to sniff the password of the root account](../Linux.md#root). As such, traditional ways of accessing the root account are insecure. Preferably, root would not be accessed at all, but this isn't really feasible. This section details the safest way possible of accessing the root account. These instructions should be applied as soon as the OS is installed to make sure it is free of malware.  
+There are a [wide range of methods that malware can use to sniff the password of the root account](../Linux#root). As such, traditional ways of accessing the root account are insecure. Preferably, root would not be accessed at all, but this isn't really feasible. This section details the safest way possible of accessing the root account. These instructions should be applied as soon as the OS is installed to make sure it is free of malware.  
   
 You must not use your ordinary user account to access root, as it may have been compromised. You also must not log directly into the root account. Create a separate "admin" user account that is used solely for accessing root and nothing else by executing:
 
@@ -1254,7 +1254,7 @@ Once you have hardened the system as much as you can, you should follow good pri
 3\. Don't leak any information about you or your system, no matter how minor it may seem.  
 4\. [Follow general security and privacy advice](../security-privacy-advice.html).  
   
-Despite the hardening you have done, you must remember that [Linux is still a fundamentally flawed operating system](../Linux.md), and no amount of hardening can ever fix it fully.
+Despite the hardening you have done, you must remember that [Linux is still a fundamentally flawed operating system](../Linux), and no amount of hardening can ever fix it fully.
 
 [Other guides](#other-guides)
 -----------------------------
