@@ -102,7 +102,7 @@ LTS](#stable-vs-lts)
 
 There are many factors that go into choosing a good Linux distribution.
 
-*   Avoid distributions that freeze packages, as [they are often quite behind on security updates](Linux.md##stable-release-models).
+*   Avoid distributions that freeze packages, as [they are often quite behind on security updates](Linux.md#stable-release-models).
     Use a distribution with an init system other than [systemd](https://systemd.io/). systemd contains a lot of
     unnecessary attack surface and [inserts a considerable amount of complexity into the most privileged user space
     component](https://www.agwa.name/blog/post/how_to_crash_systemd_in_one_tweet); [it attempts to do far more things
