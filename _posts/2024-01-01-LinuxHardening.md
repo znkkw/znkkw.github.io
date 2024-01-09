@@ -117,17 +117,13 @@ There are many factors that go into choosing a good Linux distribution.
     in glibc have been publicly disclosed](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=glibc), compared to the [very
     few in musl](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=musl). While counting CVEs by itself is often an
     inaccurate statistic, in this case, it represents an overarching issue and is symptomatic of underlying security
-    issues. musl also has invested in [decent exploit mitigations](https://www.dustri.org/b/security-features-of-
-    musl.html), particularly its [hardened memory allocator](https://www.openwall.com/lists/musl/2020/05/13/1), heavily
+    issues. musl also has invested in [decent exploit mitigations](https://www.dustri.org/b/security-features-of-musl.html), particularly its [hardened memory allocator](https://www.openwall.com/lists/musl/2020/05/13/1), heavily
   inspired by GrapheneOS' hardened\_malloc.
-*   Preferably use a distribution that utilises [LibreSSL](https://www.libressl.org/) by default rather than [OpenSSL]
-   (https://www.openssl.org/). [OpenSSL contains tremendous amounts of totally unnecessary attack surface and follows
-    poor security practices](https://arstechnica.com/information-technology/2014/04/openssl-code-beyond-repair-claims-
-    creator-of-libressl-fork/). For example, it still maintains OS/2 and VMS support — ancient operating systems that
+*   Preferably use a distribution that utilises [LibreSSL](https://www.libressl.org/) by default rather than [OpenSSL](https://www.openssl.org/). [OpenSSL contains tremendous amounts of totally unnecessary attack surface and follows
+    poor security practices](https://arstechnica.com/information-technology/2014/04/openssl-code-beyond-repair-claims-creator-of-libressl-fork/). For example, it still maintains OS/2 and VMS support — ancient operating systems that
     are multiple decades old. These abhorrent security practices are what led to the dreaded [Heartbleed vulnerability](
    https://en.wikipedia.org/wiki/Heartbleed). LibreSSL is a fork of OpenSSL by the OpenBSD team that applies [superior
-programming practices](https://en.wikipedia.org/wiki/LibreSSL#Changes) and [eradicates a lot of attack surface]
-(https://opensslrampage.org/). Within LibreSSL's first year, [it mitigated a large number of vulnerabilities, including a
+programming practices](https://en.wikipedia.org/wiki/LibreSSL#Changes) and [eradicates a lot of attack surface](https://opensslrampage.org/). Within LibreSSL's first year, [it mitigated a large number of vulnerabilities, including a
 few high severity ones](https://www.openbsd.org/papers/libtls-fsec-2015/mgp00005.html).
 
 
