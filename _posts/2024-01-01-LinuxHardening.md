@@ -23,8 +23,7 @@ Contents
 
 [1\. Choosing the right Linux distribution](#choosing-the-right-distro) 
 [2\. Kernel hardening](#kernel) 
-[2.1 Stable vs. 
-LTS](#stable-vs-lts)  
+[2.1 Stable vs. LTS](#stable-vs-lts)  
 [2.2 Sysctl](#sysctl) [2.2.1 Kernel self-protection](#sysctl-kernel)  
 [2.2.2 Network](#sysctl-network)  
 [2.2.3 User space](#sysctl-userspace)  
@@ -32,7 +31,7 @@ LTS](#stable-vs-lts)
 [2.3.2 CPU mitigations](#cpu-mitigations)  
 [2.3.3 Result](#result)  
 [2.4 hidepid](#hidepid)  
-[2.5 Kernel attack surface reduction](#kernel-attack-surface-reduction) [2.5.1 Boot parameters](#kasr-boot-parameters)  
+[2.5 Kernel attack surface reduction](#kernel-attack-surface-reduction) [2.5.1 Boot parameters](#kasr-bootparameters)  
 [2.5.2 Blacklisting kernel modules](#kasr-kernel-modules)  
 [2.5.3 rfkill](#kasr-rfkill)  
 [2.6 Other kernel pointer leaks](#other-kernel-pointer-leaks)  
