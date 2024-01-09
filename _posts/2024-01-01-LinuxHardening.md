@@ -252,7 +252,7 @@ This setting makes your system ignore all ICMP requests to avoid [Smurf attacks]
     net.ipv6.conf.all.accept_ra=0
     net.ipv6.conf.default.accept_ra=0
 
-Malicious IPv6 router advertisements [can result in a man-in-the-middle attack](https://tools.cisco.com/security/center/resources/ipv6_first_hop), so they should be disabled.
+Malicious IPv6 router advertisements [can result in a man-in-the-middle attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack), so they should be disabled.
 
     net.ipv4.tcp_sack=0
     net.ipv4.tcp_dsack=0
