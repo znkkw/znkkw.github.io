@@ -1,6 +1,6 @@
 
  
- ### These are my repos on [Github](https://github.com/C3866S?tab=repositories) feel free to use it: ###
+ ### These are my repos on [Github](https://github.com/C3866S?tab=repositories) feel free to use it: 
 
 * [Resources](https://github.com/C3866S/Resources) >> a collection of links about any topic [please contact if you have more resources](https://c3866s.github.io/contacts)
 
