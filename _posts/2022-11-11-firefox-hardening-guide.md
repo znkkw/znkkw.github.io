@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Firefox Hardening Guide"
-date: 2023-15-05
+date: 2023-05-05
 ---
 
 Update: 23 April 2023
