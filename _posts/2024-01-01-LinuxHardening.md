@@ -1,9 +1,7 @@
-     Linux Hardening Guide | Madaidan's Insecurities 🌓
+     Linux Hardening Guide 
 
 Linux Hardening Guide
 =====================
-
-_Last edited: March 19th, 2022_
 
 [Linux is not a secure operating system](../linux.html). However, there are steps you can take to improve it. This guide 
 aims to explain how to harden Linux as much as possible for security and privacy. This guide attempts to be distribution 
