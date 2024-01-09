@@ -21,7 +21,9 @@ may differ between users as to suit their setup.
 Contents
 --------
 
-[1\. Choosing the right Linux distribution](#choosing-the-right-distro) [2\. Kernel hardening](#kernel) [2.1 Stable vs. 
+[1\. Choosing the right Linux distribution](#choosing-the-right-distro) 
+[2\. Kernel hardening](#kernel) 
+[2.1 Stable vs. 
 LTS](#stable-vs-lts)  
 [2.2 Sysctl](#sysctl) [2.2.1 Kernel self-protection](#sysctl-kernel)  
 [2.2.2 Network](#sysctl-network)  
