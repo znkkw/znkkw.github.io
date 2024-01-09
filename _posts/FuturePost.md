@@ -26,7 +26,7 @@ Some of these operating systems do have some privacy invasive telemetry, but it 
   
 The security of QubesOS depends entirely on how you use it. The security within the virtual machines matter a lot — don't neglect it. Make sure that you use secure guest operating systems and split everything between as many virtual machines as possible. Virtualisation can be a very strong security boundary, but it is not magic. I'd recommend reading [Brad Spengler's criticisms of QubesOS](https://seclists.org/dailydave/2010/q3/29) to understand some of its limitations.  
   
-[Do not use Linux](linux.html) (QubesOS [is not a Linux distribution](https://www.qubes-os.org/faq/#is-qubes-just-another-linux-distribution)).
+[Do not use Linux unless you harden it](linux.html) (QubesOS [is not a Linux distribution](https://www.qubes-os.org/faq/#is-qubes-just-another-linux-distribution)).
 
 ### [Mobile](#mobile-os)
 
