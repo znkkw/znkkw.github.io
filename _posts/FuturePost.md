@@ -7,7 +7,7 @@ Security and Privacy Advice
 [Desktop Hardware](#desktop-hardware)
 -------------------------------------
 
-On desktop, use a recent Windows Secured-Core PC, MacBook or Chromebook. These all have numerous security advantages, including proper verified boot, a strict IOMMU, etc.  
+On desktop, if you are a normie, use a recent Windows Secured-Core PC, MacBook or Chromebook. These all have numerous security advantages, including proper verified boot, a strict IOMMU, etc.  
   
 Mobile phone hardware is covered in the [mobile operating system section](#mobile-os).
 
@@ -18,7 +18,7 @@ Mobile phone hardware is covered in the [mobile operating system section](#mobil
 
 The desktop security model is very broken. [It was not designed with security in mind](https://blog.cryptographyengineering.com/2017/03/05/secure-computing-for-journalists/) — security was only a poorly implemented afterthought. However, there are some operating systems that are less bad in this regard. If you can, stay away from desktop and [stick to mobile devices](#mobile-os).  
   
-Use Windows 11 (preferably in [S mode](https://www.microsoft.com/en-us/windows/s-mode) and on a Secured-Core PC), macOS, ChromeOS or [QubesOS](https://www.qubes-os.org/). Generally, these operating systems have made substantial progress on adopting modern exploit mitigations, verified boot, sandboxing, memory safe languages and so on.  
+If you are the average consumer, please use Windows 11 (preferably in [S mode](https://www.microsoft.com/en-us/windows/s-mode) and on a Secured-Core PC), macOS, ChromeOS or [QubesOS](https://www.qubes-os.org/). Generally, these operating systems have made substantial progress on adopting modern exploit mitigations, verified boot, sandboxing, memory safe languages and so on.  
   
 There are advantages and disadvantages between these options, and it is not possible to give an accurate recommendation as to which of these will suit any particular person. One must develop their own threat model and choose the suitable operating system in accordance. For example, Windows 10 has great exploit mitigations, such as its coarse-grained, forward-edge CFI implementation, [Control Flow Guard](https://docs.microsoft.com/en-us/windows/win32/secbp/control-flow-guard), whereas macOS has [full verified boot](https://support.apple.com/en-us/HT208330) to eliminate malware persistence.  
   
