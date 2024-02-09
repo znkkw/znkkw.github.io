@@ -1,18 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-
-<head>
-    <title>Kernkraftwerk</title>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="referrer" content="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-</head>
-
-<body>
-    <div class="content">
-        <h1>Coming Soon!</h1>
-
-</body>
-
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="bloglists">
+    <h1>Recent Posts</h1>
+    {% for page in paginator.pages %}
+    <hr>
+    <article>
+        <h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
+        {% if page.updated %}
+        <p><small class="blog-date">{{ page.updated }}</small></p>
+        {% else %}
+        <p><small>{{ page.date }}</small></p>
+        {% endif %}
+        {{ page.summary | safe }}
+        <p><small><a href="{{ page.permalink | safe }}">continue reading...</a></small></p>
+    </article>
+    {% endfor %}
+</div>
+<div class="pagination center">
+    {% if paginator.previous %}
+    <a class="previous" href="{{ paginator.previous }}">&lt; Prev</a>
+    {% endif %}
+    {% if paginator.next %}
+    <a class="next" href="{{ paginator.next }}">Next &gt;</a>
+    {% endif %}
+</div>
+{% endblock content %}
