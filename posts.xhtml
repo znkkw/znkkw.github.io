@@ -1,36 +1,43 @@
-<hr>
-<h2 id="layout-page-title-posts--c3866s">layout: page
-title: posts | c3866s</h2>
-<section>
-  {% if site.posts[0] %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Kernkraftwerk</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
 
-<pre><code>{% capture currentyear %}{{ &#39;now&#39; | date: &quot;%Y&quot; }}{% endcapture %}
-{% capture firstpostyear %}{{ site.posts[0].date | date: &#39;%Y&#39; }}{% endcapture %}
-{% if currentyear == firstpostyear %}
-    &lt;h3&gt;This year&#39;s posts&lt;/h3&gt;
-{% else %}
-    &lt;h3&gt;{{ firstpostyear }}&lt;/h3&gt;
-{% endif %}
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <div class="bloglists">
+        <h1>Recent Posts</h1>
+        {% for page in paginator.pages %}
+        <hr>
+        <article>
+            <h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
+            {% if page.updated %}
+            <p><small class="blog-date">{{ page.updated }}</small></p>
+            {% else %}
+            <p><small>{{ page.date }}</small></p>
+            {% endif %}
+            {{ page.summary | safe }}
+            <p><small><a href="{{ page.permalink | safe }}">continue reading...</a></small></p>
+        </article>
+        {% endfor %}
+    </div>
+    <div class="pagination center">
+        {% if paginator.previous %}
+        <a class="previous" href="{{ paginator.previous }}">&lt; Prev</a>
+        {% endif %}
+        {% if paginator.next %}
+        <a class="next" href="{{ paginator.next }}">Next &gt;</a>
+        {% endif %}
+    </div>
+    {% endblock content %}
 
-{%for post in site.posts %}
-  {% unless post.next %}
-    &lt;ul&gt;
-  {% else %}
-    {% capture year %}{{ post.date | date: &#39;%Y&#39; }}{% endcapture %}
-    {% capture nyear %}{{ post.next.date | date: &#39;%Y&#39; }}{% endcapture %}
-    {% if year != nyear %}
-      &lt;/ul&gt;
-      &lt;h3&gt;{{ post.date | date: &#39;%Y&#39; }}&lt;/h3&gt;
-      &lt;ul&gt;
-    {% endif %}
-  {% endunless %}
-    &lt;li&gt;&lt;time&gt;{{ post.date | date:&quot;%d %b&quot; }} - &lt;/time&gt;
-      &lt;a href=&quot;{{ post.url | prepend: site.baseurl | replace: &#39;//&#39;, &#39;/&#39; }}&quot;&gt;
-        {{ post.title }}
-      &lt;/a&gt;
-    &lt;/li&gt;
-{% endfor %}
-&lt;/ul&gt;
-</code></pre>
-<p>  {% endif %}</p>
-</section>
+
+</body>
+
+</html>
