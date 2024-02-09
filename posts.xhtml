@@ -1,36 +1,36 @@
 <hr>
-<p>layout: page</p>
-<h2 id="title-posts-c3866s">title: posts | c3866s</h2>
+<h2 id="layout-page-title-posts--c3866s">layout: page
+title: posts | c3866s</h2>
 <section>
-    {% if site.posts[0] %}
+  {% if site.posts[0] %}
 
-    {% capture currentyear %}{{ &#39;now&#39; | date: &quot;%Y&quot; }}{% endcapture %}
-    {% capture firstpostyear %}{{ site.posts[0].date | date: &#39;%Y&#39; }}{% endcapture %}
-    {% if currentyear == firstpostyear %}
-    <h3>This year&#39;s posts</h3>
-    {% else %}
-    <h3>{{ firstpostyear }}</h3>
+<pre><code>{% capture currentyear %}{{ &#39;now&#39; | date: &quot;%Y&quot; }}{% endcapture %}
+{% capture firstpostyear %}{{ site.posts[0].date | date: &#39;%Y&#39; }}{% endcapture %}
+{% if currentyear == firstpostyear %}
+    &lt;h3&gt;This year&#39;s posts&lt;/h3&gt;
+{% else %}
+    &lt;h3&gt;{{ firstpostyear }}&lt;/h3&gt;
+{% endif %}
+
+{%for post in site.posts %}
+  {% unless post.next %}
+    &lt;ul&gt;
+  {% else %}
+    {% capture year %}{{ post.date | date: &#39;%Y&#39; }}{% endcapture %}
+    {% capture nyear %}{{ post.next.date | date: &#39;%Y&#39; }}{% endcapture %}
+    {% if year != nyear %}
+      &lt;/ul&gt;
+      &lt;h3&gt;{{ post.date | date: &#39;%Y&#39; }}&lt;/h3&gt;
+      &lt;ul&gt;
     {% endif %}
-
-    {%for post in site.posts %}
-    {% unless post.next %}
-    <ul>
-        {% else %}
-        {% capture year %}{{ post.date | date: &#39;%Y&#39; }}{% endcapture %}
-        {% capture nyear %}{{ post.next.date | date: &#39;%Y&#39; }}{% endcapture %}
-        {% if year != nyear %}
-    </ul>
-    <h3>{{ post.date | date: &#39;%Y&#39; }}</h3>
-    <ul>
-        {% endif %}
-        {% endunless %}
-        <li><time>{{ post.date | date:&quot;%d %b&quot; }} - </time>
-            <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
-                {{ post.title }}
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
-
-    {% endif %}
+  {% endunless %}
+    &lt;li&gt;&lt;time&gt;{{ post.date | date:&quot;%d %b&quot; }} - &lt;/time&gt;
+      &lt;a href=&quot;{{ post.url | prepend: site.baseurl | replace: &#39;//&#39;, &#39;/&#39; }}&quot;&gt;
+        {{ post.title }}
+      &lt;/a&gt;
+    &lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre>
+<p>  {% endif %}</p>
 </section>
