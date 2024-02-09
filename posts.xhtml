@@ -1,0 +1,36 @@
+<hr>
+<p>layout: page</p>
+<h2 id="title-posts-c3866s">title: posts | c3866s</h2>
+<section>
+    {% if site.posts[0] %}
+
+    {% capture currentyear %}{{ &#39;now&#39; | date: &quot;%Y&quot; }}{% endcapture %}
+    {% capture firstpostyear %}{{ site.posts[0].date | date: &#39;%Y&#39; }}{% endcapture %}
+    {% if currentyear == firstpostyear %}
+    <h3>This year&#39;s posts</h3>
+    {% else %}
+    <h3>{{ firstpostyear }}</h3>
+    {% endif %}
+
+    {%for post in site.posts %}
+    {% unless post.next %}
+    <ul>
+        {% else %}
+        {% capture year %}{{ post.date | date: &#39;%Y&#39; }}{% endcapture %}
+        {% capture nyear %}{{ post.next.date | date: &#39;%Y&#39; }}{% endcapture %}
+        {% if year != nyear %}
+    </ul>
+    <h3>{{ post.date | date: &#39;%Y&#39; }}</h3>
+    <ul>
+        {% endif %}
+        {% endunless %}
+        <li><time>{{ post.date | date:&quot;%d %b&quot; }} - </time>
+            <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
+                {{ post.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+</section>

@@ -1,0 +1,255 @@
+<hr>
+<p>layout: post
+    title: &quot;Typical Assembly Language&quot;</p>
+<h2 id="date-2023-12-24">date: 2023-12-24</h2>
+<p><br> </p>
+<h2 id="introduction">Introduction</h2>
+<p>Assembly languages are usually unstructured, i.e. there are no control structures such as if or while statements:
+    these have
+    to be manually implemented using labels and jump (goto) instructions. There may exist macros that mimic control
+    structures.
+    The typical look of an assembly program is however still a single column of instructions with arguments, one per
+    line, each
+    representing one machine instruction.</p>
+<p>The working of the language reflects the actual hardware architecture -- most architectures are based on registers so
+    usually there is a small number (something like 16) of registers which may be called something like R0 to R15, or A,
+    B, C
+    etc. Sometimes registers may even be subdivided (e.g. in x86 there is an eax 32bit register and half of it can be
+    used as
+    the ax 16bit register). These registers are the fastest available memory (faster than the main RAM memory) and are
+    used to
+    perform calculations. Some registers are general purpose and some are special: typically there will be e.g. the
+    FLAGS
+    register which holds various 1bit results of performed operations (e.g. overflow, zero result etc.). Some
+    instructions may
+    only work with some registers (e.g. there may be kind of a &quot;pointer&quot; register used to hold addresses along
+    with instructions
+    that work with this register, which is meant to implement arrays). Values can be moved between registers and the
+    main memory
+    (with instructions called something like move, load or store).</p>
+<p>Writing instructions works similarly to how you call a function in high level language: you write its name and then
+    its
+    arguments, but in assembly things are more complicated because an instruction may for example only allow certain
+    kinds of
+    arguments -- it may e.g. allow a register and immediate constant (kind of a number literal/constant), but not e.g.
+    two
+    registers. You have to read the documentation for each instruction. While in high level language you may write
+    general
+    expressions as arguments (like myFunc(x + 2 * y,myFunc2())), here you can only pass specific values.</p>
+<p>There are also no complex data types, assembly only works with numbers of different size, e.g. 16 bit integer, 32 bit
+    integer etc. Strings are just sequences of numbers representing ASCII values, it is up to you whether you implement
+    null
+    terminated strings or Pascal style strings. Pointers are just numbers representing addresses. It is up to you
+    whether you
+    interpret a number as signed or unsigned (some instructions treat numbers as unsigned, some as signed).
+    Instructions are typically written as three-letter abbreviations and follow some unwritten naming conventions so
+    that
+    different assembly languages at least look similar. Common instructions found in most assembly languages are for
+    example:</p>
+<ul>
+    <li>MOV (move): move a number between registers and/or main memory (RAM).</li>
+    <li>JMP (jump, also e.g. BRA for branch): unconditional jump to far away instruction.</li>
+    <li>JEQ (jump if equal, also BEQ etc.): jump if result of previous comparison was equality.</li>
+    <li>ADD (add): add two numbers.</li>
+    <li>NOP (no operation): do nothing (used e.g. for delays or as placeholders).</li>
+    <li>CMP (compare): compare two numbers and set relevant flags (typically for a subsequent conditional jump).</li>
+</ul>
+<p><br></p>
+<h2 id="how-to">How to</h2>
+<p>On Unices the objdump utility from GNU binutils can be used to disassemble compiled programs, i.e view the
+    instructions of
+    the program in assembly (other tools like ndisasm can also be used). Use it e.g. as:</p>
+<p>objdump -d my_compiled_program
+    Let&#39;s now write a simple Unix program in x86 assembly (AT&amp;T syntax). Write the following source code into a
+    file named e.g.
+    program.s:</p>
+<pre><code class="lang-term">.<span class="hljs-keyword">global</span>   _start         <span class="hljs-comment"># include the symbol in object file</span>
+
+str:
+.ascii    <span class="hljs-string">"it works\n"</span>   <span class="hljs-comment"># the string data</span>
+
+.text 
+_start:                  <span class="hljs-comment"># execution starts here</span>
+  mov     <span class="hljs-variable">$5</span>,   %rbx     <span class="hljs-comment"># store loop counter in rbx</span>
+
+.loop:
+  <span class="hljs-comment"># make a Linux "write" syscall:</span>
+                         <span class="hljs-comment"># args to syscall will be passed in regs.</span>
+  mov     <span class="hljs-variable">$1</span>,   %rax     <span class="hljs-comment"># says syscalls type (1 = write)</span>
+  mov     <span class="hljs-variable">$1</span>,   %rdi     <span class="hljs-comment"># says file to write to (1 = stdout)</span>
+  mov     <span class="hljs-variable">$str</span>, %rsi     <span class="hljs-comment"># says the address of the string to write</span>
+  mov     <span class="hljs-variable">$9</span>,   %rdx     <span class="hljs-comment"># says how many bytes to write</span>
+  syscall                <span class="hljs-comment"># makes the syscall</span>
+
+  sub     <span class="hljs-variable">$1</span>,   %rbx     <span class="hljs-comment"># decrement loop counter</span>
+  cmp     <span class="hljs-variable">$0</span>,   %rbx     <span class="hljs-comment"># compare it to 0</span>
+  jne     .loop          <span class="hljs-comment"># if not equal, jump to start of the loop</span>
+
+  <span class="hljs-comment"># make an "exit" syscall to properly terminate:</span>
+  mov     <span class="hljs-variable">$60</span>,  %rax     <span class="hljs-comment"># says syscall type (60 = exit)</span>
+  mov     <span class="hljs-variable">$0</span>,   %rdi     <span class="hljs-comment"># says return value (0 = success)</span>
+  syscall                <span class="hljs-comment"># makes the syscall</span>
+</code></pre>
+<p>The program just writes out it works five times: it uses a simple loop and a Unix system call for writing a string to
+    standard output (i.e. it won&#39;t work on Windows and similar shit).</p>
+<p>Now assembly source code can be manually assembled into executable by running assemblers like as or nasm to obtain
+    the
+    intermediate object file and then linking it with ld, but to assemble the above written code simply we may just use
+    the gcc
+    compiler which does everything for us:</p>
+<pre><code class="lang-term">gcc -nostdlib -no-pie -o <span class="hljs-function"><span class="hljs-keyword">program</span></span> <span class="hljs-function"><span class="hljs-keyword">program</span>.<span class="hljs-title">s</span></span>
+</code></pre>
+<p>Now we can run the program with</p>
+<p>./program
+    And we should see</p>
+<pre><code class="lang-term"> <span class="hljs-keyword">it</span> works
+<span class="hljs-keyword">it</span> works
+<span class="hljs-keyword">it</span> works
+<span class="hljs-keyword">it</span> works
+<span class="hljs-keyword">it</span> works
+</code></pre>
+<p>As an exercise you can objdump the final executable and see that the output basically matches the original source
+    code.
+    Furthermore try to disassemble some primitive C programs and see how a compiler e.g. makes if statements or
+    functions into
+    assembly.</p>
+<p>Example
+    Let&#39;s take the following C code:</p>
+<pre><code class="lang-term"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">char</span> <span class="hljs-title">incrementDigit</span><span class="hljs-params">(<span class="hljs-keyword">char</span> d)</span>
+</span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-comment">// remember this is basically an if statement</span>
+    d &gt;= <span class="hljs-string">'0'</span> &amp;&amp; d &lt; <span class="hljs-string">'9'</span> ?
+    d + <span class="hljs-number">1</span> :
+    <span class="hljs-string">'?'</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span>
+</span>{
+  <span class="hljs-keyword">char</span> c = getchar();
+  <span class="hljs-built_in">putchar</span>(incrementDigit(c));
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>We will now compile it to different assembly languages (you can do this e.g. with gcc -S my_program.c). This assembly
+    will
+    be pretty long as it will contain boilerplate and implementations of getchar and putchar from standard library, but
+    we&#39;ll
+    only be looking at the assembly corresponding to the above written code. Also note that the generated assembly will
+    probably differ between compilers, their versions, flags such as optimization level etc. The code will be manually
+    commented.</p>
+<p>The x86 assembly may look like this:</p>
+<pre><code class="lang-term">incrementDigi<span class="hljs-variable">t:</span>
+  pushq   %rbp                   # save base pointer
+  movq    %rsp, %rbp             # <span class="hljs-keyword">move</span> base pointer <span class="hljs-keyword">to</span> stack top
+  movl    %edi, %eax             # <span class="hljs-keyword">move</span> <span class="hljs-keyword">argument</span> <span class="hljs-keyword">to</span> eax
+  movb    %<span class="hljs-keyword">al</span>, -<span class="hljs-number">4</span>(%rbp)          # <span class="hljs-built_in">and</span> <span class="hljs-keyword">move</span> it <span class="hljs-keyword">to</span> local var.
+  cmpb    $<span class="hljs-number">47</span>, -<span class="hljs-number">4</span>(%rbp)          # compare it <span class="hljs-keyword">to</span> <span class="hljs-string">'0'</span>
+  jle     .L2                    # <span class="hljs-keyword">if</span> &lt;=, jump <span class="hljs-keyword">to</span> .L2
+  cmpb    $<span class="hljs-number">56</span>, -<span class="hljs-number">4</span>(%rbp)          # <span class="hljs-keyword">else</span> compare <span class="hljs-keyword">to</span> <span class="hljs-string">'9'</span>
+  jg      .L2                    # <span class="hljs-keyword">if</span> &gt;, jump <span class="hljs-keyword">to</span> .L4
+  movzbl  -<span class="hljs-number">4</span>(%rbp), %eax         # <span class="hljs-keyword">else</span> <span class="hljs-built_in">get</span> the <span class="hljs-keyword">argument</span>
+  addl    $<span class="hljs-number">1</span>, %eax               # <span class="hljs-built_in">add</span> <span class="hljs-number">1</span> <span class="hljs-keyword">to</span> it
+  jmp     .L4                    # jump <span class="hljs-keyword">to</span> .L4
+.L2:
+  movl    $<span class="hljs-number">63</span>, %eax              # <span class="hljs-keyword">move</span> <span class="hljs-string">'?'</span> <span class="hljs-keyword">to</span> eax (<span class="hljs-keyword">return</span> val.)
+.L4:
+  popq    %rbp                   # restore base pointer
+  <span class="hljs-keyword">ret</span>
+
+main:
+  pushq   %rbp                   # save base pointer
+  movq    %rsp, %rbp             # <span class="hljs-keyword">move</span> base pointer <span class="hljs-keyword">to</span> stack top
+  subq    $<span class="hljs-number">16</span>, %rsp              # <span class="hljs-keyword">make</span> space <span class="hljs-keyword">on</span> stack
+  <span class="hljs-keyword">call</span>    <span class="hljs-built_in">getchar</span>                # push <span class="hljs-keyword">ret</span>. addr. <span class="hljs-built_in">and</span> jump <span class="hljs-keyword">to</span> func.
+  movb    %<span class="hljs-keyword">al</span>, -<span class="hljs-number">1</span>(%rbp)          # store <span class="hljs-keyword">return</span> val. <span class="hljs-keyword">to</span> local var.
+  movsbl  -<span class="hljs-number">1</span>(%rbp), %eax         # <span class="hljs-keyword">move</span> with <span class="hljs-keyword">sign</span> extension
+  movl    %eax, %edi             # arg. will <span class="hljs-keyword">be</span> passed in edi
+  <span class="hljs-keyword">call</span>    incrementDigit
+  movsbl  %<span class="hljs-keyword">al</span>, %eax              # <span class="hljs-keyword">sign</span> <span class="hljs-built_in">extend</span> <span class="hljs-keyword">return</span> val.
+  movl    %eax, %edi             # pass arg. in edi again
+  <span class="hljs-keyword">call</span>    putchar
+  movl    $<span class="hljs-number">0</span>, %eax               # <span class="hljs-built_in">values</span> are returned in eax
+  leave
+  <span class="hljs-keyword">ret</span>
+The ARM assembly may look like thi<span class="hljs-variable">s:</span>
+
+incrementDigi<span class="hljs-variable">t:</span>
+  sub   <span class="hljs-keyword">sp</span>, <span class="hljs-keyword">sp</span>, #<span class="hljs-number">16</span>              // <span class="hljs-keyword">make</span> room <span class="hljs-keyword">on</span> stack
+  strb  w0, [<span class="hljs-keyword">sp</span>, <span class="hljs-number">15</span>]             // load <span class="hljs-keyword">argument</span> from w0 <span class="hljs-keyword">to</span> local var.
+  ldrb  w0, [<span class="hljs-keyword">sp</span>, <span class="hljs-number">15</span>]             // load back <span class="hljs-keyword">to</span> w0
+  cmp   w0, <span class="hljs-number">47</span>                   // compare <span class="hljs-keyword">to</span> <span class="hljs-string">'0'</span>
+  bls   .L2                      // branch <span class="hljs-keyword">to</span> .L2 <span class="hljs-keyword">if</span> &lt;
+  ldrb  w0, [<span class="hljs-keyword">sp</span>, <span class="hljs-number">15</span>]             // load <span class="hljs-keyword">argument</span> again <span class="hljs-keyword">to</span> w0
+  cmp   w0, <span class="hljs-number">56</span>                   // compare <span class="hljs-keyword">to</span> <span class="hljs-string">'9'</span>
+  bhi   .L2                      // branch <span class="hljs-keyword">to</span> .L2 <span class="hljs-keyword">if</span> &gt;=
+  ldrb  w0, [<span class="hljs-keyword">sp</span>, <span class="hljs-number">15</span>]             // load <span class="hljs-keyword">argument</span> again <span class="hljs-keyword">to</span> w0
+  <span class="hljs-built_in">add</span>   w0, w0, <span class="hljs-number">1</span>                // <span class="hljs-built_in">add</span> <span class="hljs-number">1</span> <span class="hljs-keyword">to</span> it
+  <span class="hljs-built_in">and</span>   w0, w0, <span class="hljs-number">255</span>              // mask out lowest byte
+  <span class="hljs-keyword">b</span>     .L3                      // branch <span class="hljs-keyword">to</span> .L3
+.L2:
+  mov   w0, <span class="hljs-number">63</span>                   // <span class="hljs-keyword">set</span> w0 (<span class="hljs-keyword">ret</span>. value) <span class="hljs-keyword">to</span> <span class="hljs-string">'?'</span>
+.L3:
+  <span class="hljs-built_in">add</span>   <span class="hljs-keyword">sp</span>, <span class="hljs-keyword">sp</span>, <span class="hljs-number">16</span>               // shift stack pointer back
+  <span class="hljs-keyword">ret</span>
+
+main:
+  stp   x29, x30, [<span class="hljs-keyword">sp</span>, -<span class="hljs-number">32</span>]!     // shift stack <span class="hljs-built_in">and</span> store <span class="hljs-keyword">x</span> regs
+  mov   x29, <span class="hljs-keyword">sp</span>
+  <span class="hljs-keyword">bl</span>    <span class="hljs-built_in">getchar</span>
+  strb  w0, [<span class="hljs-keyword">sp</span>, <span class="hljs-number">31</span>]             // store w0 (<span class="hljs-keyword">ret</span>. val.) <span class="hljs-keyword">to</span> local var. 
+  ldrb  w0, [<span class="hljs-keyword">sp</span>, <span class="hljs-number">31</span>]             // load it back <span class="hljs-keyword">to</span> w0
+  <span class="hljs-keyword">bl</span>    incrementDigit
+  <span class="hljs-built_in">and</span>   w0, w0, <span class="hljs-number">255</span>              // mask out lowest byte
+  <span class="hljs-keyword">bl</span>    putchar
+  mov   w0, <span class="hljs-number">0</span>                    // <span class="hljs-keyword">set</span> <span class="hljs-keyword">ret</span>. val. <span class="hljs-keyword">to</span> <span class="hljs-number">0</span>
+  ldp   x29, x30, [<span class="hljs-keyword">sp</span>], <span class="hljs-number">32</span>       // restore <span class="hljs-keyword">x</span> regs
+  <span class="hljs-keyword">ret</span>
+The RISC-V assembly may look like thi<span class="hljs-variable">s:</span>
+
+incrementDigi<span class="hljs-variable">t:</span>
+  addi    <span class="hljs-keyword">sp</span>,<span class="hljs-keyword">sp</span>,-<span class="hljs-number">32</span>              # shift stack (<span class="hljs-keyword">make</span> room)
+  <span class="hljs-keyword">sw</span>      s0,<span class="hljs-number">28</span>(<span class="hljs-keyword">sp</span>)              # save frame pointer
+  addi    s0,<span class="hljs-keyword">sp</span>,<span class="hljs-number">32</span>               # shift frame pointer
+  mv      a5,a0                  # <span class="hljs-built_in">get</span> arg. from a0 <span class="hljs-keyword">to</span> a5
+  <span class="hljs-keyword">sb</span>      a5,-<span class="hljs-number">17</span>(s0)             # save <span class="hljs-keyword">to</span> <span class="hljs-keyword">to</span> local var.
+  lbu     a4,-<span class="hljs-number">17</span>(s0)             # <span class="hljs-built_in">get</span> it <span class="hljs-keyword">to</span> a4
+  li      a5,<span class="hljs-number">47</span>                  # load <span class="hljs-string">'0'</span> <span class="hljs-keyword">to</span> a4
+  bleu    a4,a5,.L2              # branch <span class="hljs-keyword">to</span> .L2 <span class="hljs-keyword">if</span> a4 &lt;= a5
+  lbu     a4,-<span class="hljs-number">17</span>(s0)             # load arg. again
+  li      a5,<span class="hljs-number">56</span>                  # load <span class="hljs-string">'9'</span> <span class="hljs-keyword">to</span> a5
+  bgtu    a4,a5,.L2              # branch <span class="hljs-keyword">to</span> .L2 <span class="hljs-keyword">if</span> a4 &gt; a5
+  lbu     a5,-<span class="hljs-number">17</span>(s0)             # load arg. again
+  addi    a5,a5,<span class="hljs-number">1</span>                # <span class="hljs-built_in">add</span> <span class="hljs-number">1</span> <span class="hljs-keyword">to</span> it
+  andi    a5,a5,<span class="hljs-number">0</span>xff             # mask out the lowest byte
+  <span class="hljs-keyword">j</span>       .L3                    # jump <span class="hljs-keyword">to</span> .L3
+.L2:
+  li      a5,<span class="hljs-number">63</span>                  # load <span class="hljs-string">'?'</span>
+.L3:
+  mv      a0,a5                  # <span class="hljs-keyword">move</span> result <span class="hljs-keyword">to</span> <span class="hljs-keyword">ret</span>. val.
+  <span class="hljs-keyword">lw</span>      s0,<span class="hljs-number">28</span>(<span class="hljs-keyword">sp</span>)              # restore frame pointer
+  addi    <span class="hljs-keyword">sp</span>,<span class="hljs-keyword">sp</span>,<span class="hljs-number">32</span>               # <span class="hljs-keyword">pop</span> stack
+  jr      ra                     # jump <span class="hljs-keyword">to</span> addr in ra
+
+main:
+  addi    <span class="hljs-keyword">sp</span>,<span class="hljs-keyword">sp</span>,-<span class="hljs-number">32</span>              # shift stack (<span class="hljs-keyword">make</span> room)
+  <span class="hljs-keyword">sw</span>      ra,<span class="hljs-number">28</span>(<span class="hljs-keyword">sp</span>)              # store <span class="hljs-keyword">ret</span>. addr <span class="hljs-keyword">on</span> stack
+  <span class="hljs-keyword">sw</span>      s0,<span class="hljs-number">24</span>(<span class="hljs-keyword">sp</span>)              # store stack frame pointer <span class="hljs-keyword">on</span> stack
+  addi    s0,<span class="hljs-keyword">sp</span>,<span class="hljs-number">32</span>               # shift frame pointer
+  <span class="hljs-keyword">call</span>    <span class="hljs-built_in">getchar</span>
+  mv      a5,a0                  # <span class="hljs-keyword">copy</span> <span class="hljs-keyword">return</span> val. <span class="hljs-keyword">to</span> a5
+  <span class="hljs-keyword">sb</span>      a5,-<span class="hljs-number">17</span>(s0)             # <span class="hljs-keyword">move</span> a5 <span class="hljs-keyword">to</span> local var
+  lbu     a5,-<span class="hljs-number">17</span>(s0)             # load it again <span class="hljs-keyword">to</span> a5
+  mv      a0,a5                  # <span class="hljs-keyword">move</span> it <span class="hljs-keyword">to</span> a0 (func. arg.)
+  <span class="hljs-keyword">call</span>    incrementDigit
+  mv      a5,a0                  # <span class="hljs-keyword">copy</span> <span class="hljs-keyword">return</span> val. <span class="hljs-keyword">to</span> a5
+  mv      a0,a5                  # <span class="hljs-built_in">get</span> it back <span class="hljs-keyword">to</span> a0 (func. arg.)
+  <span class="hljs-keyword">call</span>    putchar
+  li      a5,<span class="hljs-number">0</span>                   # load <span class="hljs-number">0</span> <span class="hljs-keyword">to</span> a5
+  mv      a0,a5                  # <span class="hljs-keyword">move</span> it <span class="hljs-keyword">to</span> a0 (<span class="hljs-keyword">ret</span>. val.)
+  <span class="hljs-keyword">lw</span>      ra,<span class="hljs-number">28</span>(<span class="hljs-keyword">sp</span>)              # restore <span class="hljs-keyword">return</span> addr.
+  <span class="hljs-keyword">lw</span>      s0,<span class="hljs-number">24</span>(<span class="hljs-keyword">sp</span>)              # restore frame pointer
+  addi    <span class="hljs-keyword">sp</span>,<span class="hljs-keyword">sp</span>,<span class="hljs-number">32</span>               # <span class="hljs-keyword">pop</span> stack
+  jr      ra                     # jump <span class="hljs-keyword">to</span> addr in ra
+</code></pre>

@@ -1,0 +1,319 @@
+<hr>
+<p>layout: post
+    title: &quot;Create Strong Passwords with apg&quot;</p>
+<h2 id="date-2023-06-30">date: 2023-06-30</h2>
+<p><br></p>
+<h2 id="introduction">Introduction</h2>
+<p>To generate secure/strong passwords (passphrases) there are several methods, here we see how to generate them with
+    <code>apg</code> on GNU/Linux. But first we need some theory on this argument...
+</p>
+<p>From <a href="https://en.wikipedia.org/wiki/Password_strength">Wikipedia - Password strenght</a>:</p>
+<p>Password strength is a measure of the effectiveness of a password against guessing or brute-force attacks. The
+    strength of a password is a function of length, complexity, and unpredictability. Using strong passwords lowers
+    overall risk of a security breach, but strong passwords do not replace the need for other effective security
+    controls.</p>
+<p>The rate at which an attacker can submit guessed passwords to the system is a key factor in determining system
+    security. It is usual in the computer industry to specify password strength in terms of information entropy, which
+    is measured in bits, see: <a href="https://en.wikipedia.org/wiki/Entropic_security">Entropic Security</a>.</p>
+<p>To make a long story short, a password is strong when it consists of as many random characters as possible and when
+    it is as long as possible.</p>
+<p>In addition, as the great Arch Wiki explains, a password is not secure when it contains the following elements:</p>
+<ul>
+    <li>
+        <p>Personally identifiable information (e.g., your dog&#39;s name, date of birth, area code, favorite video
+            game)</p>
+    </li>
+    <li>
+        <p>Simple character substitutions on words (e.g., k1araj0hns0n), as modern dictionary attacks can easily work
+            with these.</p>
+    </li>
+    <li>
+        <p>Root &quot;words&quot; or common strings followed or preceded by added numbers, symbols, or characters (e.g.,
+            DG091101%). In my experience a large number of users use this pattern, for example:
+            <code>&lt;name&gt;&lt;date&gt;</code> (e.g. johnny1975, or <code>&lt;date&gt;&lt;name&gt;</code> (e.g.
+            1975johnny), the first format of the two examples is generally more common.
+        </p>
+    </li>
+    <li>
+        <p>Common phrases or short strings of dictionary words (e.g. photocopyhauntbranchexpose) including with
+            character substitution (e.g. Ph0toc0pyh4uN7br@nch3xpse)</p>
+    </li>
+    <li>
+        <p>Any of the <a href="https://en.wikipedia.org/wiki/Wikipedia:10,000_most_common_passwords">most common
+                passwords</a>, For example, I&#39;ve seen many users (not to say 80%) use 1234, 0000, and 1111 (in that
+            order of frequency :)) as their smartphone PIN.</p>
+    </li>
+</ul>
+<p>See: <a href="https://wiki.archlinux.org/title/security#Passwords">Security - ArchWiki: Passwords</a></p>
+<p>I will not explain here what is the best method to memorize and maintain passwords because this requires a separate
+    topic, anyway I prefer to write passwords on paper, and use password managers only for less important passwords or
+    when strictly necessary.
+    With this I am not saying that password managers are not a good method, but they are strictly dependent on the
+    security of the operating system in which they are located, If the system is compromised by a malware, when you type
+    the master password all the others are considered compromised, as always, security is a process, a chain in which
+    all rings must be checked.
+    Obviously also the paper method becomes useless if the book in which the passwords are written is not secured.</p>
+<p>Regarding this particular topic I recommend <a href="https://defensivecomputingchecklist.com/#passwoyds">this
+        excellent guide</a>.</p>
+<p>Now that we have an idea about the security of passwords, let&#39;s see how to generate secure ones with
+    <code>apg</code> (Automatic Password Generator).
+</p>
+<h2 id="install-apg">Install apg</h2>
+<p>The original website is no longer online but the program can be downloaded on <a
+        href="https://github.com/buzo-ffm/apg/">GitHub</a>, moreover the package is present in the main repositories of
+    most GNU/Linux distros:</p>
+<ul>
+    <li>
+        <p><a href="https://aur.archlinux.org/packages/apg">Arch Linux AUR</a></p>
+    </li>
+    <li>
+        <p><a href="https://packages.gentoo.org/packages/app-admin/apg">Gentoo Linux</a></p>
+    </li>
+    <li>
+        <p><a href="https://packages.debian.org/search?keywords=apg">Debian</a></p>
+    </li>
+    <li>
+        <p><a href="https://packages.ubuntu.com/search?keywords=apg">Ubuntu</a></p>
+    </li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<p>As any good GNU/Linux user should do, let&#39;s go to the program&#39;s help menù with the <code>apg -help</code>
+    command:</p>
+<pre><code class="lang-term">$ apg -<span class="hljs-keyword">help</span>
+
+apg   Automated <span class="hljs-keyword">Password</span> Generator
+        Copyright (c) Adel I. Mirzazhanov
+
+apg   [-a algorithm] [-r <span class="hljs-keyword">file</span>]
+      [-M <span class="hljs-keyword">mode</span>] [-E char_string] [-n num_of_pass] [-m min_pass_len]
+      [-x max_pass_len] [-c cl_seed] [-d] [-s] [-h] [-y] [-q]
+
+-M <span class="hljs-keyword">mode</span>         <span class="hljs-keyword">new</span> <span class="hljs-keyword">style</span> <span class="hljs-keyword">password</span> modes
+-E char_string  <span class="hljs-keyword">exclude</span> <span class="hljs-keyword">characters</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">password</span> generation process
+-r <span class="hljs-keyword">file</span>         <span class="hljs-keyword">apply</span> dictionary <span class="hljs-keyword">check</span> against <span class="hljs-keyword">file</span>
+-b filter_file  <span class="hljs-keyword">apply</span> bloom filter <span class="hljs-keyword">check</span> against filter_file
+                (filter_file should be created <span class="hljs-keyword">with</span> apgbfm(<span class="hljs-number">1</span>) utility)
+-p substr_len   paranoid modifier <span class="hljs-keyword">for</span> bloom filter <span class="hljs-keyword">check</span>
+-a algorithm    <span class="hljs-keyword">choose</span> algorithm
+                 <span class="hljs-number">1</span> - random <span class="hljs-keyword">password</span> generation according <span class="hljs-keyword">to</span>
+                     <span class="hljs-keyword">password</span> modes
+                 <span class="hljs-number">0</span> - pronounceable <span class="hljs-keyword">password</span> generation
+-n  num_of_pass  generate num_of_pass passwords
+-m  min_pass_len <span class="hljs-keyword">minimum</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">length</span>
+-x  max_pass_len maximum <span class="hljs-keyword">password</span> <span class="hljs-keyword">length</span>
+-s              ask <span class="hljs-keyword">user</span> <span class="hljs-keyword">for</span> a random <span class="hljs-keyword">seed</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">password</span>
+                generation
+-c cl_seed      <span class="hljs-keyword">use</span> cl_seed <span class="hljs-keyword">as</span> a random <span class="hljs-keyword">seed</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">password</span>
+-d              <span class="hljs-keyword">do</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">use</span> <span class="hljs-keyword">any</span> delimiters <span class="hljs-keyword">between</span> <span class="hljs-keyword">generated</span> passwords
+-l              spell <span class="hljs-keyword">generated</span> <span class="hljs-keyword">password</span>
+-t              print pronunciation <span class="hljs-keyword">for</span> <span class="hljs-keyword">generated</span> pronounceable <span class="hljs-keyword">password</span>
+-y              print crypted passwords
+-q              quiet <span class="hljs-keyword">mode</span> (<span class="hljs-keyword">do</span> <span class="hljs-keyword">not</span> print <span class="hljs-keyword">warnings</span>)
+-h              print this <span class="hljs-keyword">help</span> screen
+-v              print <span class="hljs-keyword">version</span> information
+</code></pre>
+<p>We also read the manual with the command <code>man apg</code> where we can have several explanations and examples on
+    the use of the program, the items in the help menù that interest us most for this guide are the following
+    parameters:</p>
+<pre><code class="lang-term">-<span class="ruby">M mode         new style password modes
+</span>-<span class="ruby">E char_string  exclude characters from password generation process
+</span>-<span class="ruby">s              ask user <span class="hljs-keyword">for</span> a random seed <span class="hljs-keyword">for</span> password
+</span>                generation
+</code></pre>
+<p>Let&#39;s see the explanation in the manual page of each of these items:</p>
+<pre><code class="lang-term">-M mode
+      <span class="hljs-keyword">Use</span> symbolsets specified <span class="hljs-keyword">with</span> <span class="hljs-keyword">mode</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">password</span> generation.  <span class="hljs-keyword">mode</span> <span class="hljs-keyword">is</span> a <span class="hljs-built_in">text</span> <span class="hljs-keyword">string</span> consisting <span class="hljs-keyword">of</span> <span class="hljs-keyword">characters</span> S, s, N, n, C, c, L, l. <span class="hljs-keyword">Where</span>:
+
+      S      generator must <span class="hljs-keyword">use</span> special symbol <span class="hljs-keyword">set</span> <span class="hljs-keyword">for</span> every <span class="hljs-keyword">generated</span> password.
+
+      s      generator should <span class="hljs-keyword">use</span> special symbol <span class="hljs-keyword">set</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">password</span> generation.
+
+      N      generator must <span class="hljs-keyword">use</span> numeral symbol <span class="hljs-keyword">set</span> <span class="hljs-keyword">for</span> every <span class="hljs-keyword">generated</span> password.
+
+      n      generator should <span class="hljs-keyword">use</span> numeral symbol <span class="hljs-keyword">set</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">password</span> generation.
+
+      C      generator must <span class="hljs-keyword">use</span> capital symbol <span class="hljs-keyword">set</span> <span class="hljs-keyword">for</span> every <span class="hljs-keyword">generated</span> password.
+
+      c      generator should <span class="hljs-keyword">use</span> capital symbol <span class="hljs-keyword">set</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">password</span> generation.
+
+      L      generator must <span class="hljs-keyword">use</span> small letters symbol <span class="hljs-keyword">set</span> <span class="hljs-keyword">for</span> every <span class="hljs-keyword">generated</span> <span class="hljs-keyword">password</span> (<span class="hljs-keyword">always</span> <span class="hljs-keyword">present</span> <span class="hljs-keyword">if</span> pronounceable <span class="hljs-keyword">password</span> generation algorithm <span class="hljs-keyword">is</span> used).
+
+      l      generator should <span class="hljs-keyword">use</span> small letters symbol <span class="hljs-keyword">set</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">password</span> generation.
+
+      ...
+
+      Examples:
+      -M sncl <span class="hljs-keyword">or</span> -M SNCL <span class="hljs-keyword">or</span> -M Cn
+
+-E char_string
+      <span class="hljs-keyword">exclude</span>  <span class="hljs-keyword">characters</span>  <span class="hljs-keyword">in</span> char_string <span class="hljs-keyword">from</span> <span class="hljs-keyword">password</span> generation process (<span class="hljs-keyword">in</span> pronounceable <span class="hljs-keyword">password</span> generation <span class="hljs-keyword">mode</span> you can <span class="hljs-keyword">not</span> <span class="hljs-keyword">exclude</span> small letters). <span class="hljs-keyword">To</span> <span class="hljs-keyword">include</span> special symbols that can be recognized <span class="hljs-keyword">by</span> shell (apos‐
+      trophe, quotes, dollar <span class="hljs-keyword">sign</span>, etc.) <span class="hljs-keyword">in</span> char_string <span class="hljs-keyword">use</span> the backslashed versions.
+
+      Examples:
+
+      Command apg -a <span class="hljs-number">1</span> -M n -n <span class="hljs-number">3</span> -m <span class="hljs-number">8</span> -E <span class="hljs-number">23456789</span> will generate a <span class="hljs-keyword">set</span> <span class="hljs-keyword">of</span> passwords that will look <span class="hljs-keyword">like</span> this
+      <span class="hljs-number">10100110</span>
+      <span class="hljs-number">01111000</span>
+      <span class="hljs-number">11011101</span>
+
+...
+
+-s     ask <span class="hljs-keyword">user</span> <span class="hljs-keyword">for</span> random <span class="hljs-keyword">sequence</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">password</span> generation
+</code></pre>
+<p>In the paragraph <code>DEFAULT OPTIONS</code> the manual tells us: &quot;If you want to generate really secure
+    passwords, you should use option <code>-s</code>.&quot;</p>
+<p>The <code>-s</code> parameter stands for &quot;seed&quot;, or &quot;random seed&quot;:</p>
+<p>A random sequence for password generation is the &quot;random seed&quot;, a random seed is a number (or vector) used
+    to initialize a pseudorandom number generator. In short, it increases the entropy of the generated password, but
+    this is a very large topic indeed, so I refer you to some sources where you can document yourself:</p>
+<ul>
+    <li>
+        <p><a href="https://en.wikipedia.org/wiki/Cryptographically-secure_pseudorandom_number_generator">Cryptographically
+                Secure Pseudorandom Number Generator (CSPRNG)</a></p>
+    </li>
+    <li>
+        <p><a href="https://en.wikipedia.org/wiki/Random_seed">Random Seed</a></p>
+    </li>
+    <li>
+        <p><a href="https://en.wikipedia.org/wiki/Initialization_vector">Cryptography - Initialization vector (IV)</a>
+        </p>
+    </li>
+</ul>
+<p>Then, to increase the strength (entropy) of the generated passwords we use these parameters.</p>
+<h2 id="use-apg">Use apg</h2>
+<p>Generate 5 passwords of minimum 15 and maximum 20 random characters and excluding some:</p>
+<pre><code class="lang-term">apg -a 1 -M SNCL -n 5 -m 15 -x 20 -E <span class="hljs-symbol">\\</span><span class="hljs-symbol">\{</span><span class="hljs-symbol">\\</span><span class="hljs-symbol">\ </span><span class="hljs-symbol">\\</span><span class="hljs-symbol">\}</span><span class="hljs-symbol">\\</span><span class="hljs-symbol">\ </span>oO01lIi
+y6?C[@$[;Dum'_qfT
+:5-@~5|uzrg=LKX
+d_R!<span class="hljs-keyword">$C3YH-5.QN~KdMsu
+NS,&gt;$RuZzqv-.b&gt;5;m!
+Y#,/Xw2c7H&amp;=RQgH*D6</span>
+</code></pre>
+<p>Here with the parameter <code>-M SNCL</code>, apg generates passwords that MUST include special symbols, numbers,
+    uppercase and lowercase letters, while in the <code>-E</code> parameter it is indicated to exclude the characters
+    &quot;{&quot; and &quot;}&quot;, note that the escape sequence with three backslashes is used, furthermore,
+    characters that can cause confusion in transcribing or writing passwords are excluded from the generator (some fonts
+    have a 0 and a capital O or l and I which are very similar for example).</p>
+<p>Generate 1 password of minimum 21 random characters, excluding some and take user input as a random seed:</p>
+<pre><code class="lang-term">apg -a<span class="hljs-number"> 1 </span>-M SNCL -n<span class="hljs-number"> 1 </span>-m<span class="hljs-number"> 21 </span>-E oO0lI -s
+
+Please enter some random data (only first<span class="hljs-number"> 16 </span>are significant)
+(eg. your old password):&gt;
+{m'8bKTS4e`v%|U]GTgK$
+</code></pre>
+<p>When using the <code>-s</code> parameter you can enter random characters by typing them, as the program indicates, 16
+    characters are needed, I like to use the output always generated by apg, to use this method we open another terminal
+    and generate passwords of 16 random characters:</p>
+<pre><code class="lang-term">apg -a <span class="hljs-number">1</span> -M SNCL -n <span class="hljs-number">1</span> -m <span class="hljs-number">16</span> -x <span class="hljs-number">16</span> -E oO0lI
+<span class="hljs-number">42</span>&lt;Q^<span class="hljs-number">3</span>H~gmb&gt;vQ6]
+</code></pre>
+<p>Then we use the <code>-s</code> parameter again to generate the password pasting the seed generated before, i.e.
+    <code>42&lt;Q^3H~gmb&gt;vQ6]</code> in this case:
+</p>
+<pre><code class="lang-term">apg -a<span class="hljs-number"> 1 </span>-M SNCL -n<span class="hljs-number"> 1 </span>-m<span class="hljs-number"> 21 </span>-E oO0lI -s
+
+Please enter some random data (only first<span class="hljs-number"> 16 </span>are significant)
+(eg. your old password):&gt;
+/!q/["Jt[*pRiL2j+|;5p
+</code></pre>
+<p>If we omit the <code>-n (num_of_pass)</code> parameter, apg by default generates 6 passwords:</p>
+<pre><code class="lang-term">apg -a <span class="hljs-number">1</span> -M SNCL -m <span class="hljs-number">21</span> -E oO0lI
+(<span class="hljs-number">936</span>Fhvw\H&amp;^<span class="hljs-symbol">:NwUFt9e_</span>
+<span class="hljs-number">5</span>`\%/Uu5PAWm}y(<span class="hljs-name">&gt;</span>['RDH
+j{~GvfYsfGPHPx!7&lt;s1]E
+x}&gt;K@?:<span class="hljs-number">5</span>^<span class="hljs-number">26</span>~]m_KJ~,Mi
+fW8eB,KM\d~D[sN'GQYvd
+ye$*qGMX}",4F_J3y*KKH
+</code></pre>
+<p>Let&#39;s write a simple Bash script, so we can generate passwords with just one command.</p>
+<pre><code class="lang-bash"><span class="hljs-meta">#!/usr/bin/env bash</span>
+
+<span class="hljs-meta"># pwgen.sh</span>
+<span class="hljs-meta">#</span>
+<span class="hljs-meta"># Shell script for generate passwords with `apg`</span>
+<span class="hljs-meta"># see: `man apg` -- `apg --help`</span>
+
+<span class="hljs-meta"># Characters to exclude when generate passwords.  Use backslashes</span>
+<span class="hljs-meta"># to include special symbols that can be recognized by shell.</span>
+readonly char_exclude=<span class="hljs-string">"\\\'\\\ \\\"\\\ \\\`\\\ o0O1lIi"</span>
+
+<span class="hljs-meta"># Options:</span>
+<span class="hljs-meta"># -a algorithm  1 - random character password generation</span>
+<span class="hljs-meta"># -M mode</span>
+<span class="hljs-meta">#       S      generator must use special symbol set for every generated password.</span>
+<span class="hljs-meta">#       N      generator must use numeral symbol set for every generated password.</span>
+<span class="hljs-meta">#       C      generator must use capital symbol set for every generated password.</span>
+<span class="hljs-meta">#       L      generator  must  use  small  letters symbol set for every generated password</span>
+<span class="hljs-meta">#</span>
+<span class="hljs-meta"># -n num_of_pass</span>
+<span class="hljs-meta"># -m min_pass_len</span>
+<span class="hljs-meta"># -x max_pass_len</span>
+<span class="hljs-meta"># -E exclude characters</span>
+<span class="hljs-meta">#</span>
+<span class="hljs-meta"># Generate n 10 passwords with a lenght between 12-18 characters, for</span>
+<span class="hljs-meta"># longer and more secure passwords you should use `apg` manually.</span>
+apg -a <span class="hljs-number">1</span> -M SNCL -n <span class="hljs-number">10</span> -m <span class="hljs-number">12</span> -x <span class="hljs-number">18</span> -E <span class="hljs-string">"${char_exclude}"</span>
+</code></pre>
+<p>Now we just need to run the command the <code>./pwgen.sh</code> for launch apg with selected options.</p>
+<pre><code class="lang-term">./pwgen.sh
+Wygz<span class="hljs-variable">$*</span>a}m9NL(!Zd%Y
+<span class="hljs-number">6</span><span class="hljs-symbol">:nu</span>{N~<span class="hljs-number">2</span>%<span class="hljs-number">7</span>Zd]j6C?
+K|uEw5gKqSd}R;x
+K4&lt;@+<span class="hljs-symbol">:C^M8*</span><span class="hljs-number">5</span>Njcb]r
+J*<span class="hljs-number">7</span>&amp;K[b&lt;&lt;sUg
+tY.<span class="hljs-symbol">:XNALt24&amp;Mj</span>
+quGMYuDU]<span class="hljs-number">6</span>&gt;~
+jR_kuwxUkft&lt;M4
+Lk<span class="hljs-number">_</span>..c/D)j]<span class="hljs-number">6</span>bR
+y3Nuu/VD22=Y
+</code></pre>
+<p>Now let&#39;s look at password security in terms of <a
+        href="https://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength">entropy
+        bits</a>, entropy bits is a term for measure the strength of a password as the number of attempts to find the
+    password, assuming knowledge of the character set the password uses (like in a dictionary attack). You can see an
+    excellent explanation here: <a
+        href="https://www.securitycentric.com.au/blog/bits-of-entropy-the-importance-of-complex-passwords">Bits of
+        Entropy - The Importance of Complex Passwords</a>.</p>
+<p>For the test we will use the utility on this website: <a
+        href="http://rumkin.com/tools/password/passchk.php">http://rumkin.com/tools/password/passchk.php</a></p>
+<p>Note: <strong>Do not test passwords for use in real cases directly on this site</strong>, obviously if you write an
+    unencrypted password on a website as in this case it is to be considered compromised. You can download the program
+    file used at this website to run the test locally (double checking the JavaScript code before starting it) :).</p>
+<p>Generate a 21 characters lenght password with options seen above:</p>
+<pre><code class="lang-term">apg -<span class="hljs-selector-tag">a</span> <span class="hljs-number">1</span> -M SNCL -n <span class="hljs-number">1</span> -m <span class="hljs-number">21</span> -E oO0lI
+\iMs]<span class="hljs-variable">$FNg3W</span>:,<span class="hljs-string">"D7qG8u$</span>
+</code></pre>
+<p>The test tells us that this password has 109.4 bits of entropy and a charset size of 94 characters which is a strong
+    password:</p>
+<p><img src="uploads/img/posts/create-strong-passwords-with-apg/1-entropy-bits_1.png" alt="alt text"></p>
+<h2 id="final-words">Final words</h2>
+<p>Of course, <a href="https://www.michaelhorowitz.com/BestPasswordAdvice.php">this is not the only method of generating
+        strong passwords</a>, but it protects you from a large number of dictionary and brute-force attacks. In any
+    case, the security of passwords also depends many other factors, here are some tips:</p>
+<ul>
+    <li>
+        <p>When you use apg and when you type in your passwords <a
+                href="https://en.wikipedia.org/wiki/Shoulder_surfing_(computer_security">check that there is no one
+                behind you</a>).</p>
+    </li>
+    <li>
+        <p>Do not reuse the same password for different logins.</p>
+    </li>
+    <li>
+        <p>Where possible use Two-factor authentication (2FA) in addition to the password.</p>
+    </li>
+    <li>
+        <p>If you use a password manager, it is best to place the database in a USB pendrive and connect it only when
+            needed, another great method is to install password manager software on an <a
+                href="https://www.howtogeek.com/687792/the-ultimate-defense-what-is-an-air-gapped-computer/">Air Gapped
+                Computer</a>.</p>
+    </li>
+    <li>
+        <p>In most cases it is not necessary to change passwords periodically, change them only in case you suspect that
+            they have been compromised, see: <a
+                href="https://www.schneier.com/blog/archives/2014/03/choosing_secure_1.html">Schneier on Security -
+                Choosing Secure Passwords</a></p>
+    </li>
+</ul>
+<p>I hope this guide has cleared up your doubts regarding password security, stay safe!</p>
+<p>c3866s</p>

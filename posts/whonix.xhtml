@@ -1,0 +1,229 @@
+<hr>
+<p>layout: post
+    title: &quot;Whonix on QEMU/KVM&quot;</p>
+<h2 id="date-2023-07-29">date: 2023-07-29</h2>
+<p><br></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+    <li><a href="#install-kvm-packages">Install KVM packages</a></li>
+    <li><a href="#download-the-whonix-kvm-image">Download the Whonix Image</a></li>
+    <li><a href="#download-the-whonix-kvm-signing-key">Download the Whonix KVM Signing Key</a></li>
+    <li><a href="#verify-the-whonix-kvm-image">Verify the Whonix KVM Image</a></li>
+    <li><a href="#extract-the-whonix-kvm-image">Extract the Whonix KVM Image</a></li>
+    <li><a href="#modify-xml-configuration">Modify XML configuration</a></li>
+    <li><a href="#import-whonix-vm-templates">Import Whonix VM Templates</a></li>
+    <li><a href="#move-whonix-image-files">Move Whonix Image Files</a></li>
+    <li><a href="#start-whonix">Start Whonix</a></li>
+    <li><a href="#resources">Resources</a></li>
+</ul>
+<p><br></p>
+<p><strong>NOTE:</strong> This guide is a simple explanation of the steps for installing Whonix OS on KVM and run it
+    with virt-manager, for your safety, always refer to the <a href="https://www.whonix.org/wiki/KVM">Whonix
+        documentation page</a>, there may be updates and/or changes.</p>
+<p>You can find the documentation on which I based this guide in the <a href="#resources">Resources</a> section at the
+    bottom of the page.</p>
+<hr>
+<h2 id="install-kvm-packages">Install KVM packages</h2>
+<p><strong>Debian</strong></p>
+<p>Update package list:</p>
+<pre><code class="lang-term"><span class="hljs-attribute">sudo apt update</span>
+</code></pre>
+<p><strong>Debian (11/bullseye+) on Intel/AMD:</strong></p>
+<pre><code class="lang-term">sudo apt <span class="hljs-keyword">install</span> --no-<span class="hljs-keyword">install</span>-recommends qemu-kvm libvirt-daemon-system libvirt-clients virt-manager gir1.<span class="hljs-number">2</span>-spiceclientgtk-<span class="hljs-number">3.0</span> dnsmasq qemu-utils
+</code></pre>
+<p><strong>Debian (11/bullseye+) on PowerPC:</strong></p>
+<pre><code class="lang-term">sudo apt install --<span class="hljs-keyword">no</span>-install-recommends qemu-<span class="hljs-keyword">system</span>-ppc libvirt-daemon-<span class="hljs-keyword">system</span> libvirt-clients virt-manager gir1<span class="hljs-number">.2</span>-spiceclientgtk<span class="hljs-number">-3.0</span> dnsmasq qemu-utils
+</code></pre>
+<p><strong>Ubuntu:</strong></p>
+<pre><code class="lang-term"> AVOID UBUNTU <span class="hljs-keyword">AT</span> <span class="hljs-keyword">ALL</span> COST AVOID CORPORATE LINUX <span class="hljs-keyword">AT</span> <span class="hljs-keyword">ALL</span> COST <span class="hljs-keyword">DO</span> <span class="hljs-keyword">NOT</span> SUPPORT THEM BOYCOTT THEIR ISO<span class="hljs-symbol">'S</span>!
+</code></pre>
+<p>Add your user to KVM groups:</p>
+<pre><code class="lang-term"><span class="hljs-symbol">sudo</span> <span class="hljs-keyword">adduser </span><span class="hljs-string">"$(whoami)"</span> kvm
+<span class="hljs-symbol">sudo</span> <span class="hljs-keyword">adduser </span><span class="hljs-string">"$(whoami)"</span> libvirt
+</code></pre>
+<p><strong>Arch Linux:</strong></p>
+<pre><code class="lang-term"><span class="hljs-attribute">sudo pacman -S libvirt qemu virt-manager ebtables dnsmasq bridge-utils</span>
+</code></pre>
+<p><strong>Gentoo Linux</strong></p>
+<pre><code class="lang-term">  G<span class="hljs-function"><span class="hljs-title">eneral</span> setup  ---&gt;</span>
+    T<span class="hljs-function"><span class="hljs-title">imers</span> subsystem  ---&gt;</span>
+        &lt;*&gt;   High Resolution Timer Support
+[*] V<span class="hljs-function"><span class="hljs-title">irtualization</span>  ---&gt;</span>
+    &lt;*&gt;   Kernel-based Virtual Machine (KVM) support
+[*] V<span class="hljs-function"><span class="hljs-title">irtualization</span>  ---&gt;</span>
+    &lt;M&gt;   KVM <span class="hljs-keyword">for</span> Intel processors support [NOTE: <span class="hljs-keyword">if</span> you have an Intel CPU]
+[*] V<span class="hljs-function"><span class="hljs-title">irtualization</span>  ---&gt;</span>
+    &lt;M&gt;   KVM <span class="hljs-keyword">for</span> AMD processors support [NOTE: <span class="hljs-keyword">if</span> you have an AMD CPU]
+
+sudo emerge -av qemu virt-manager dnsmasq bridge-utils
+</code></pre>
+<p>Add your user to KVM groups:</p>
+<pre><code class="lang-term">sudo usermod <span class="hljs-_">-a</span>G kvm <span class="hljs-string">"<span class="hljs-variable">$(whoami)</span>"</span>
+sudo usermod <span class="hljs-_">-a</span>G libvirt <span class="hljs-string">"<span class="hljs-variable">$(whoami)</span>"</span>
+</code></pre>
+<p>A reboot is required after the installation of qemu, libvirt packages:</p>
+<pre><code class="lang-term"><span class="hljs-attribute">sudo reboot</span>
+</code></pre>
+<hr>
+<h2 id="download-the-whonix-kvm-image">Download the Whonix KVM Image</h2>
+<p>Download the Whonix libvirt image from here: <a href="https://www.whonix.org/wiki/KVM#Download-Whonix">Whonix wiki -
+        KVM: Download-Whonix</a></p>
+<p><strong>NOTE:</strong> Download Whonix images only from the official website and not from other sources! (this is
+    obvious right?)</p>
+<hr>
+<h2 id="download-the-whonix-kvm-signing-key">Download the Whonix KVM Signing Key</h2>
+<p>1 - Download the &quot;HulaHoop&#39;s OpenPGP key&quot;, see: <a
+        href="https://www.whonix.org/wiki/KVM/Project_Signing_Key#Download_the_OpenPGP_Key">hulahoop.asc</a></p>
+<p>2 - Check the key fingerprint without import anything:</p>
+<pre><code class="lang-term"><span class="hljs-comment">gpg</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">keyid</span><span class="hljs-literal">-</span><span class="hljs-comment">format</span> <span class="hljs-comment">long</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">import</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">import</span><span class="hljs-literal">-</span><span class="hljs-comment">options</span> <span class="hljs-comment">show</span><span class="hljs-literal">-</span><span class="hljs-comment">only</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">with</span><span class="hljs-literal">-</span><span class="hljs-comment">fingerprint</span> <span class="hljs-comment">hulahoop</span><span class="hljs-string">.</span><span class="hljs-comment">asc</span>
+</code></pre>
+<p>3 - Verify the output, the key fingerprint must be exactly the same as the following:</p>
+<pre><code class="lang-bash">Key fingerprint = <span class="hljs-number">04</span>EF <span class="hljs-number">2</span>F66 <span class="hljs-number">6</span>D36 C354 <span class="hljs-number">058</span>B  <span class="hljs-number">9</span>DD4 <span class="hljs-number">50</span>C7 <span class="hljs-number">8</span>B6F <span class="hljs-number">9</span>FF2 EC85
+</code></pre>
+<p>Original fingerprint: <a href="https://www.whonix.org/wiki/KVM/Project_Signing_Key#Download_the_OpenPGP_Key">Whonix
+        wiki - KVM: Download the OpenPGP Key</a></p>
+<p>If you see this message:</p>
+<pre><code class="lang-term">gpg: <span class="hljs-keyword">key</span> <span class="hljs-number">50</span>C78B6F9FF2EC85: <span class="hljs-number">1</span> signature <span class="hljs-keyword">not</span> checked due <span class="hljs-keyword">to</span> a missing <span class="hljs-keyword">key</span>
+</code></pre>
+<p>Don&#39;t worry, this is related to <a href="https://www.kicksecure.com/wiki/OpenPGP#The_OpenPGP_Web_of_Trust">The
+        OpenPGP Web of Trust</a>. More information about this <a
+        href="https://www.whonix.org/wiki/KVM/Project_Signing_Key#OpenPGP_Web_of_Trust">here</a>.</p>
+<p><strong>NOTE:</strong> Do not continue if the fingerprint does not match! This risks using infected or erroneous
+    files! The whole point of verification is to confirm file integrity.</p>
+<p>4 - Import the key:</p>
+<pre><code class="lang-term">gpg --<span class="hljs-keyword">import</span> hulahoop.asc
+<span class="hljs-symbol">
+gpg:</span> Total number <span class="hljs-string">processed:</span> <span class="hljs-number">1</span>
+<span class="hljs-string">gpg:</span>               <span class="hljs-string">imported:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p>If the Whonix signing key was already imported in the past, the output should include the key is unchanged:</p>
+<pre><code class="lang-term"><span class="hljs-string">gpg:</span> Total number <span class="hljs-string">processed:</span> <span class="hljs-number">1</span>
+<span class="hljs-string">gpg:</span>              <span class="hljs-string">unchanged:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p>Again, don&#39;t worry if you see this message:</p>
+<pre><code class="lang-term">gp<span class="hljs-variable">g:</span> <span class="hljs-keyword">no</span> ultimately trusted <span class="hljs-built_in">keys</span> found
+</code></pre>
+<p>This message is not relate to the Whonix signing key itself, but instead usually means the user has not created an
+    OpenPGP key yet, which is of no importance when verifying virtual machine images.
+    More information <a href="https://www.whonix.org/wiki/KVM/Project_Signing_Key#Download_the_OpenPGP_Key">here</a>.
+</p>
+<hr>
+<h2 id="verify-the-whonix-kvm-image">Verify the Whonix KVM Image</h2>
+<p>1 - Download the (OpenPGP Signature) of the virtual machine image: <a
+        href="https://www.whonix.org/wiki/KVM#Download-Whonix">Whonix wiki - KVM: Download-Whonix</a></p>
+<p>2 - Save the signature in the same folder as the KVM image:</p>
+<p><img src="uploads/img/posts/whonix-kvm/1-whonix-signing-key.png" alt="alt text"></p>
+<p>3 - Open a terminal in this folder and verify the image with <code>gpg</code>:</p>
+<pre><code class="lang-term">gpg --verify-options show-notations --verify Whonix*<span class="hljs-selector-class">.libvirt</span><span class="hljs-selector-class">.xz</span><span class="hljs-selector-class">.asc</span> Whonix*<span class="hljs-selector-class">.libvirt</span><span class="hljs-selector-class">.xz</span>
+</code></pre>
+<p>4 - Verify the output, if the image is correct, the output will inform that the signature is good:</p>
+<pre><code class="lang-term">gpg: Good signature <span class="hljs-keyword">from</span> <span class="hljs-string">"HulaHoop"</span>
+</code></pre>
+<p>The output might be followed by a warning as follows:</p>
+<pre><code class="lang-term">gpg: WARNING: This key <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> certified <span class="hljs-keyword">with</span> a trusted signature!
+gpg:          There <span class="hljs-keyword">is</span> <span class="hljs-literal">no</span> indication <span class="hljs-literal">that</span> the signature belongs <span class="hljs-keyword">to</span> the owner.
+</code></pre>
+<p>This GPG warning is related to the level of trust placed in the developers signing key and the OpenPGP Web of Trust
+    (see above).</p>
+<p><strong>NOTE:</strong> Check the GPG signature timestamp. For example, if you previously saw a signature from 2021
+    and now see a signature from 2020, then there is something wrong.</p>
+<p>The first line in the gpg output includes the signature creation timestamp, check this example:</p>
+<pre><code class="lang-term"><span class="hljs-selector-tag">gpg</span>: <span class="hljs-selector-tag">Signature</span> <span class="hljs-selector-tag">made</span> <span class="hljs-selector-tag">Mon</span> 19 <span class="hljs-selector-tag">Jan</span> 2015 11<span class="hljs-selector-pseudo">:45</span><span class="hljs-selector-pseudo">:41</span> <span class="hljs-selector-tag">PM</span> <span class="hljs-selector-tag">CET</span> <span class="hljs-selector-tag">using</span> <span class="hljs-selector-tag">RSA</span> <span class="hljs-selector-tag">key</span> <span class="hljs-selector-tag">ID</span> 77<span class="hljs-selector-tag">BB3C48</span>
+</code></pre>
+<p>Also check the <code>file@name</code> value in the gpg output, this value describe the file name. This helps to
+    confirm that the filename has not been tampered with.</p>
+<pre><code><span class="hljs-selector-tag">gpg</span>: <span class="hljs-selector-tag">Signature</span> <span class="hljs-selector-tag">notation</span>: <span class="hljs-selector-tag">file</span>@<span class="hljs-keyword">name</span>=<span class="hljs-keyword">Whonix</span>-<span class="hljs-keyword">16</span>.<span class="hljs-keyword">0</span>.<span class="hljs-keyword">3</span>.<span class="hljs-keyword">7</span>.<span class="hljs-keyword">libvirt</span>.<span class="hljs-keyword">xz</span>
+</code></pre>
+<p>If the image is not correct, you will see in the output that the signature is bad:</p>
+<pre><code class="lang-term">gpg: BAD signature <span class="hljs-keyword">from</span> <span class="hljs-string">"HulaHoop"</span>
+</code></pre>
+<p><strong>NOTE:</strong> Do not continue if verification fails!</p>
+<p>For more information about signature verification see: <a
+        href="https://www.kicksecure.com/wiki/Verifying_Software_Signatures">Verifying Software Signatures</a></p>
+<hr>
+<h2 id="extract-the-whonix-kvm-image">Extract the Whonix KVM Image</h2>
+<p>1 - Extract the image with <code>tar</code></p>
+<pre><code class="lang-term">tar -xvf Whonix*<span class="hljs-selector-class">.libvirt</span><span class="hljs-selector-class">.xz</span>
+</code></pre>
+<p>2 - Read and accept the <a href="https://www.whonix.org/wiki/Whonix:Copyrights#License">Whonix ™ binary license
+        agreement</a>:</p>
+<pre><code class="lang-term"><span class="hljs-keyword">less</span> WHONIX_BINARY_LICENSE_AGREEMENT
+</code></pre>
+<p>To accept the license create the following file:</p>
+<pre><code class="lang-term"><span class="hljs-keyword">touch</span> WHONIX_BINARY_LICENSE_AGREEMENT_accepted
+</code></pre>
+<hr>
+<h2 id="modify-xml-configuration">Modify XML configuration</h2>
+<p>Before importing the virtual machine you can modify the <code>XML file</code> if you want to make your settings:</p>
+<pre><code class="lang-term"><span class="hljs-attribute">nano</span> Whonix-Gateway<span class="hljs-regexp">*.xml</span>
+</code></pre>
+<pre><code class="lang-term"><span class="hljs-attribute">nano</span> Whonix-Workstation<span class="hljs-regexp">*.xml</span>
+</code></pre>
+<p>For example I put the KVM images in my home folder, then I changed the related entry in the XML file:</p>
+<p><img src="uploads/img/posts/whonix-kvm/2-xml-entry.png" alt="alt text"></p>
+<p>You can always edit the XML files later, if necessary, see: <a
+        href="https://www.whonix.org/wiki/KVM#Editing_an_Imported_Machine.27s_XML_Configuration">Editing and Imported
+        Machine&#39;s XML</a></p>
+<p>In any case, be careful what you change, editing configuration defaults is neither recommended nor necessary.</p>
+<hr>
+<h2 id="import-whonix-vm-templates">Import Whonix VM Templates</h2>
+<p>1 - Import Network configuration:</p>
+<pre><code class="lang-term">sudo virsh net-<span class="hljs-keyword">define</span> <span class="hljs-section">Whonix_external</span>*.xml
+sudo virsh net-<span class="hljs-keyword">define</span> <span class="hljs-section">Whonix_internal</span>*.xml
+</code></pre>
+<p>2 - Import Whonix Gateway and Workstation images:</p>
+<pre><code class="lang-term">sudo virsh <span class="hljs-keyword">define</span> <span class="hljs-section">Whonix</span>-Gateway*.xml
+sudo virsh <span class="hljs-keyword">define</span> <span class="hljs-section">Whonix</span>-Workstation*.xml
+</code></pre>
+<hr>
+<h2 id="move-whonix-image-files">Move Whonix Image Files</h2>
+<p>The XML files are configured to point to the default storage location:</p>
+<pre><code class="lang-bash">/var/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">libvirt</span>/<span class="hljs-title">images</span></span>
+</code></pre>
+<p>If you need to change this parameter see: <a href="#modify-xml-configuration">Modify XML configuration</a>.</p>
+<p>It is recommended to move the image files instead of copying them:</p>
+<pre><code class="lang-term">sudo mv Whonix-Gateway*.qcow2 /var/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">libvirt</span>/<span class="hljs-title">images</span>/<span class="hljs-title">Whonix</span>-<span class="hljs-title">Gateway</span>.<span class="hljs-title">qcow2</span></span>
+sudo mv Whonix-Workstation*.qcow2 /var/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">libvirt</span>/<span class="hljs-title">images</span>/<span class="hljs-title">Whonix</span>-<span class="hljs-title">Workstation</span>.<span class="hljs-title">qcow2</span></span>
+</code></pre>
+<p>If you need to move the images to another folder like one on your home for example:</p>
+<pre><code class="lang-term">mv Whonix-Gateway*<span class="hljs-selector-class">.qcow2</span> ~/user/kvm/Whonix-Gateway<span class="hljs-selector-class">.qcow2</span>
+mv Whonix-Workstation*<span class="hljs-selector-class">.qcow2</span> ~/user/kvm/Whonix-Workstation.qcow2
+</code></pre>
+<p>Remember that the path must match the value in the XML file.</p>
+<hr>
+<h2 id="start-whonix">Start Whonix</h2>
+<p>1 - Start KVM and Whonix Networks:</p>
+<pre><code class="lang-term">sudo virsh <span class="hljs-built_in">net</span>-<span class="hljs-built_in">start</span> default
+sudo virsh <span class="hljs-built_in">net</span>-<span class="hljs-built_in">start</span> Whonix-External
+sudo virsh <span class="hljs-built_in">net</span>-<span class="hljs-built_in">start</span> Whonix-Internal
+</code></pre>
+<p>2 - Start <a href="https://virt-manager.org/">virt-manager</a></p>
+<p>From GUI:</p>
+<pre><code><span class="hljs-keyword">Start</span> Menu → Applications → <span class="hljs-keyword">System</span> → <span class="hljs-keyword">Virtual</span> Machine Manager
+
+Whonix-Gateway → click <span class="hljs-keyword">open</span> → click the play symbol
+</code></pre>
+<p>From terminal:</p>
+<pre><code class="lang-term">sudo virsh <span class="hljs-literal">start</span> Whonix-Gateway
+sudo virsh <span class="hljs-literal">start</span> Whonix-Workstation
+</code></pre>
+<p>You can also modify the parameters from virt-manager, for example I have adjusted the value of the available RAM:</p>
+<p><img src="uploads/img/posts/whonix-kvm/3-virt-manager.png" alt="alt text"></p>
+<hr>
+<h3 id="resources-">Resources:</h3>
+<p><a href="https://www.whonix.org/wiki/KVM">Whonix ™ for KVM</a></p>
+<p><a href="https://www.libvirt.org/manpages/virsh.html">libvirt - virsh</a></p>
+<p>Whonix wiki - Security:</p>
+<p><a href="https://www.whonix.org/wiki/Computer_Security_Introduction">Computer Security Education</a></p>
+<p><a href="https://www.whonix.org/wiki/Basic_Security_Guide_Introduction">Basic Security Guide</a></p>
+<p>ArchWiki KVM:</p>
+<p><a href="https://wiki.archlinux.org/title/QEMU">QEMU</a></p>
+<p><a href="https://wiki.archlinux.org/title/KVM">KVM</a></p>
+<p><a href="https://wiki.archlinux.org/title/Libvirt">libvirt</a></p>
+<h3 id="credits-">Credits:</h3>
+<p><a href="https://www.whonix.org/">Whonix</a></p>
+<p><a href="https://libvirt.org/">libvirt</a></p>
+<p><a href="https://virt-manager.org/">virt-manager</a></p>
+<p>Again, many thanks to the Whonix Team and their documentation, and for continuing to develop and maintain this
+    project.
+    Thanks guys.</p>
