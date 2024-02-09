@@ -1,0 +1,119 @@
+body {
+    background:  linear-gradient(#00000099, #00000099), url("images/stars.gif") repeat;
+    image-rendering: optimizespeed;
+    font-family: MorePeftectDos, 'Courier New', monospace;
+    text-align: justify;
+    word-break: break-word;
+    color: #e8eaed;
+}
+
+@font-face {
+    font-family: MorePeftectDos;
+    src: url("moreperfectdos.ttf");
+}
+
+a, p {
+    font-size: 17px;
+}
+
+a, h1 {
+    text-decoration: none;
+    color: inherit;
+    text-shadow:
+        0 0 7px #6a00ff,
+        0 0 14px #6a00ff;
+}
+
+img {
+    padding: 3px;
+}
+
+h1, .center {
+    text-align: center;
+}
+
+p img {
+    vertical-align: middle;
+}
+
+.setup-img {
+    width: 48%;
+    padding: 20px 0px 35px 0px;
+}
+
+.webring img {
+    width: 88px;
+    height: 31px;
+}
+
+.highlight {
+    background-color: #000;
+    color: #6a00ff;
+    font-size: 14px;
+    text-shadow: none;
+}
+
+.content {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 30px;
+    background-color: #1717178c;
+    padding: 13px;
+    box-shadow:  
+        0 0 7px #6a00ff;
+}
+
+.widget-container {
+    display: grid;
+    justify-content: center;
+    grid-auto-flow: column;
+}
+
+.widget-container a {
+    color: inherit;
+}
+
+.widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 265px;
+    height: 215px;
+    margin: 10px;
+    background-color: #1717178c;
+}
+
+.widget span {
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.widget:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.neon-text {
+    text-shadow:
+        0 0 7px #6a00ff,
+        0 0 14px #6a00ff;
+}
+
+.neon-box {
+    box-shadow: 0 0 7px #6a00ff;
+}
+
+@media only screen and (max-width: 900px) {
+    .widget-container {
+        grid-auto-flow: unset;
+        margin-left: 25%;
+        margin-right: 25%;
+     }
+
+    .content {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+}
