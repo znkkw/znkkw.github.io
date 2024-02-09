@@ -1,11 +1,11 @@
 # The URL the site will be built for
-base_url = "https://castorisdead.xyz"
+base_url = "https://znkkw.github.io"
 
-title = "Castor's Shit Posts"
-description = "Just Some Normal Blog Posts by Castor"
+title = "kernkraftwerk"
+description = "A handful of blog posts"
 default_language = "en"
 
-author = "whoisyoges@castorisdead.xyz (Castor)"
+author = "cmaximus@disroot.org"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
