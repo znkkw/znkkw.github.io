@@ -1,43 +1,27 @@
-# The URL the site will be built for
-base_url = "https://znkkw.github.io"
+title = "c3866s"
+description = "Cyber Security | Privacy | Linux"
+baseurl = ""
+source = "."
+destination = "./_site"
+permalink = "/:title"
+paginate = 5
+paginate_path = "/blog/page:num/"
+future = true
+plugins = [ "jekyll-seo-tag", "jekyll-paginate", "jekyll-sitemap" ]
+owner = "c3866s"
+year = "2022"
+remote_theme = "tocttou/hacker-blog"
+port = 8_880
 
-title = "kernkraftwerk"
-description = "Just Some Blog Posts from KKW"
-default_language = "en"
+[author]
+name = "c3866s"
+email = ""
+url = "https://c3866s.github.io"
 
-author = "cmaximus@disroot.org"
+[[defaults]]
+[defaults.scope]
+path = ""
+type = "posts"
 
-# Whether to automatically compile all Sass files in the sass directory
-compile_sass = true
-
-# Whether to build a search index to be used later on by a JavaScript library
-build_search_index = false
-
-# When set to "true", the generated HTML files are minified.
-minify_html = false
-
-# When set to "true", a feed is automatically generated.
-generate_feed = true
-
-# The filename to use for the feed. Used as the template filename, too.
-# Defaults to "atom.xml", which has a built-in template that renders an Atom 1.0 feed.
-# There is also a built-in template "rss.xml" that renders an RSS 2.0 feed.
-feed_filename = "atom.xml"
-
-[markdown]
-# When set to "true", all code blocks are highlighted.
-highlight_code = false
-
-# Whether external links are to be opened in a new tab
-# If this is true, a `rel="noopener"` will always automatically be added for security reasons
-external_links_target_blank = true
-
-# Whether to set rel="nofollow" for all external links
-external_links_no_follow = true
-
-# Whether to set rel="noreferrer" for all external links
-external_links_no_referrer = true
-
-# The number of articles to include in the feed. All items are included if
-# this limit is not set (the default).
-# feed_limit = 20
+[defaults.values]
+layout = "post"
