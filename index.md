@@ -10,6 +10,10 @@ title: home | kernkraftwerk
 GPG Key Status : active
 ```
 --------------------------------------------------------------------------
+**my webring badge(?)**
+[<img src="./assets/img/webring/kkw.png">](https://znkkw.github.io)
+
+
 
 [<img src="./assets/img/webring/gento.png">](https://www.gentoo.org/) [<img src="./assets/img/webring/arfnet.png">](https://arf20.com/) [<img src="./assets/img/webring/decentralize.png">](https://letsdecentralize.org/) [<img src="./assets/img/webring/digdipper.png">](https://digdeeper.club/) 
 
