@@ -1,6 +1,6 @@
 ---
 layout: page
-title: home | c3866s
+title: home | kernkraftwerk
 ---
 
 ```term

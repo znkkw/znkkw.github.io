@@ -1,13 +1,13 @@
 ---
 layout: page
-title: whoami | c3866s
+title: whoami | kernkraftwerk
 ---
 
 ```term
 whoami
 ```
 
-Hello friend, I am  `c3866s` and I am a Cypherpunk,many people tell to me that I am a Hacker (to some extend it's true), but there's still a long way to go to be one.As a Hacker you are the elite of Computer Science.
+Hello friend, I am  `Kernkraftwerk` and I am a Cypherpunk,many people tell to me that I am a Hacker (to some extend it's true), but there's still a long way to go to be one.As a Hacker you are the elite of Computer Science.
 
 My interest are mainly about Operating Systems, cryptography, pentensting on networks,so that also results in network engineering /networking.[you can sum it all up as Cybersecurity Engineering]
 
