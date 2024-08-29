@@ -11,7 +11,8 @@ GPG Key Status : active
 ```
 --------------------------------------------------------------------------
 **my webring badge(?)**
-[<img src="./assets/img/webring/kkw.png">](https://znkkw.github.io)
+
+(x)[<img src="./assets/img/webring/kkw.png">](https://znkkw.github.io)
 
 
 
