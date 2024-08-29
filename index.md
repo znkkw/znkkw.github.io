@@ -10,8 +10,9 @@ title: home | kernkraftwerk
 GPG Key Status : active
 ```
 --------------------------------------------------------------------------
+   
+   [<img src="./assets/img/webring/kkw.png">](https://znkkw.github.io)
 
-**~~~~~~~>>** [<img src="./assets/img/webring/kkw.png">](https://znkkw.github.io)
 
 
 
