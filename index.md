@@ -17,7 +17,4 @@ GPG Key Status : active
 
 [<img src="./assets/img/webring/grapheneos.gif">](https://grapheneos.org/) [<img src="./assets/img/webring/internetprivacy.gif">]() [<img src="./assets/img/webring/linux2.gif">](https://github.com/torvalds/linux) [<img src="./assets/img/webring/pgp.gif">](https://www.openpgp.org/)
 
-
 -------------------------------------------------------------------------
-**NOTE: This page will be completely rebuild in the future shifted from CSS/Markdown to html only[Release Maybe in Q4 2025?]**
-
