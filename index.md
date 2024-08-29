@@ -8,7 +8,7 @@ GPG Key Status : active
 ```
 --------------------------------------------------------------------------
 
-[<img src="./assets/img/webring/gento.png">](https://www.gentoo.org/)
+[<img src="./assets/img/webring/gento.png">](https://www.gentoo.org/) [<img src="./assets/img/webring/arfnet.png">](https://arf20.com/)
 
 **[DONT TRUST THE GOVERNMENT](https://gentoo.org/)**
 
