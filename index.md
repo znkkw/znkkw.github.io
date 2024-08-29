@@ -7,9 +7,7 @@ title: home | kernkraftwerk
 GPG Key Status : active
 ```
 --------------------------------------------------------------------------
-<p align="center">
-  <img src="https://github.com/znkkw/znkkw.github.io/blob/main/assets/img/1024px-Flag_of_the_Arditi_del_Popolo_Battalion.svg.png" alt=":3">
-</p>
+
 
 
 
