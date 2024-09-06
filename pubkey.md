@@ -5,6 +5,7 @@ title: GPG
 ```term
 My gpg key 
 ```
+```gpg
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGW86GkBEADNYo6kIEG0CM0n0oi7ajj7MAeHEZd0+LgmeYfBRi4TnGjcKsoG
@@ -58,7 +59,7 @@ lj6KIW4N2vKP
 =pvrv
 -----END PGP PUBLIC KEY BLOCK-----
 
-
+```
 
 
 
