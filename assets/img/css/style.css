@@ -7,7 +7,9 @@
 body {
     background: radial-gradient(circle, #39382d, #000);
     color: #fff;
-    font-family: "FreePixel", monospace;
+    font-family: 'Perfect DOS VGA 437';
+    src: url('/assets/fonts/Perfect DOS VGA 437.ttf') format('truetype'); /* Adjust the path as needed */
+    /* font-family: "FreePixel", monospace;*/
     font-size: 16px;
     position: relative
 }
