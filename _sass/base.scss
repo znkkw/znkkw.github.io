@@ -2,6 +2,7 @@
 
 @import "rouge-base16-dark";
 @import "default_colors";
+
 @font-face {
   font-family: 'GNU Unifont';
   src: url('/assets/fonts/unifont-15.1.05.otf') format('opentype'); 
@@ -19,6 +20,8 @@ $body-foreground: $gallery !default;
 $header: $conifer !default;
 $blockquote-color: $silver-chalice !default;
 $blockquote-border: $dove-grey !default;
+$base-font-family: 'GNU Unifont', monospace;
+$heading-font-family: 'GNU Unifont', monospace;
 
 body {
   margin: 0;
