@@ -3,25 +3,11 @@
 @import "rouge-base16-dark";
 @import "default_colors";
 
-@font-face {
-  font-family: 'GNU Unifont';
-  src: url('/assets/fonts/unifont-15.1.05.otf') format('opentype'); 
-}
-
-@font-face {
-  font-family: 'Perfect DOS VGA 437';
-  src: url('/assets/fonts/Perfect DOS VGA 437.ttf') format('truetype'); /* Adjust the path as needed */
-}
-
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');<
-
-$body-background: /*$cod-grey*/ !default;
+$body-background: $cod-grey !default;
 $body-foreground: $gallery !default;
 $header: $conifer !default;
 $blockquote-color: $silver-chalice !default;
 $blockquote-border: $dove-grey !default;
-$base-font-family: 'GNU Unifont', monospace;
-$heading-font-family: 'GNU Unifont', monospace;
 
 body {
   margin: 0;
@@ -30,7 +16,7 @@ body {
   color: $body-foreground;
   font-size: 16px;
   line-height: 1.5;
-  font-family: $base-font-family;
+  font-family: MorePeftectDos, 'Courier New', monospace;
 
 }
 
@@ -80,7 +66,7 @@ header h1 {
   margin: 0;
   text-align: center;
   font-weight: bold;
-  font-family: $heading-font-family;
+  font-family: MorePeftectDos, 'Courier New', monospace;
   color: $conifer;//$header;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
                0 0 5px rgba(181, 232, 83, 0.1),
@@ -110,7 +96,7 @@ header h2 {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
-  font-family: $heading-font-family;
+  font-family: MorePeftectDos, 'Courier New', monospace;
   color: $header;
   letter-spacing: -0.03em;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
