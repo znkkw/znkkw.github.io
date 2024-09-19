@@ -16,8 +16,12 @@ body {
   color: $body-foreground;
   font-size: 16px;
   line-height: 1.5;
-  font-family: MorePeftectDos, 'Courier New', monospace;
+  
+  /*font-family: MorePeftectDos, 'Courier New', monospace;*/
+  font-family: 'Perfect DOS VGA 437';
+  src: url('/assets/fonts/Perfect DOS VGA 437.ttf') format('truetype'); /* Adjust the path as needed */
 
+  
 }
 
 /* General & 'Reset' Stuff */
