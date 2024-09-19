@@ -1,287 +1,305 @@
-/* original: https://github.com/pages-themes/hacker */
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@font-face {
+  font-family: 'GNU Unifont';
+  src: url('/assets/fonts/unifont-15.1.05.otf') format('opentype'); 
+}
 
-@import "rouge-base16-dark";
-@import "default_colors";
+@font-face {
+  font-family: 'Perfect DOS VGA 437';
+  src: url('/assets/fonts/Perfect DOS VGA 437.ttf') format('truetype'); /* Adjust the path as needed */
+}
 
-$body-background: $cod-grey !default;
-$body-foreground: $gallery !default;
-$header: $conifer !default;
-$blockquote-color: $silver-chalice !default;
-$blockquote-border: $dove-grey !default;
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
+// Override Minima variables
+$base-font-family: 'GNU Unifont', monospace;
+$heading-font-family: 'GNU Unifont', monospace;
+$content-width: 1000px !default;
+
+// Import Minima styles
+@import "minima";
+
+// Custom background color
 body {
-  margin: 0;
-  padding: 0;
-  background: $body-background url("../assets/img/stars.gif") 0 0;
-  color: $body-foreground;
-  font-size: 16px;
-  line-height: 1.5;
-  font-family: MorePeftectDos, 'Courier New', monospace;
-
+  font-family: $base-font-family;
+  color: #1D1E20; /* Black color for text */
 }
 
-/* General & 'Reset' Stuff */
-.container {
-  width: 90%;
-  max-width: 1000px;
-  margin: 0 auto;
+// Custom background color for posts
+body.post-page {
+  background-color: #7B92BF; /* Windows 95 desktop teal color */
 }
 
-section {
-  display: block;
-  margin: 0 0 20px 0;
+// Custom background color for home page
+body.home-page {
+  background-color: #008080; /* Windows 95 desktop teal color */
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 20px;
-}
-
-li {
-  line-height: 1.4 ;
-}
-
-/* Header, <header>
-   header   - container
-   h1       - project name
-   h2       - project description
-*/
-header {
-  background: rgba(0, 0, 0, 0.1);
-  border-bottom: 1px dashed $conifer; //header;
-  padding: 20px;
-  margin: 0 0 40px 0;
-}
-
-.header-links {
-  text-align: center;
-}
-
-.header-link {
-  display: inline;
-}
-
-header h1 {
-  font-size: 18px;
-  line-height: 1.5;
-  margin: 0;
-  text-align: center;
-  font-weight: bold;
-  font-family: MorePeftectDos, 'Courier New', monospace;
-  color: $conifer;//$header;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
-               0 0 5px rgba(181, 232, 83, 0.1),
-               0 0 10px rgba(181, 232, 83, 0.1);
-  letter-spacing: -1px;
-  -webkit-font-smoothing: antialiased;
-}
-
-header h2 {
-  font-size: 18px;
-  font-weight: 300;
-  color: #666;
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
-/* Main Content */
-#main_content {
+.main-content {
+  max-width: $content-width;
+  margin: 0 auto; // Changed from 1rem auto to 0 auto
+  padding: 1rem;
+  background-color: #C5C9C7;
+  box-shadow: 5px 5px 0 #666666;
+  border-radius: 0;
   width: 100%;
-  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
-  font-family: MorePeftectDos, 'Courier New', monospace;
-  color: $header;
-  letter-spacing: -0.03em;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
-               0 0 5px rgba(181, 232, 83, 0.1),
-               0 0 10px rgba(181, 232, 83, 0.1);
+// Custom styles for the post meta
+.post-meta {
+  color: black;
+  margin-top: 0.1rem; /* Reduced space between title and date */
+  font-size: 0.875rem; /* Smaller font size for date */
 }
 
-#main_content h1 {
-  font-size: 30px;
+// Custom styles for home page links
+.home-content a {
+  color: black;
 }
 
-#main_content h2 {
-  font-size: 24px;
+// Adjusting header colors and sizes with more specificity
+body.post-page h1, body.home-page h1,
+body.post-page h2, body.home-page h2,
+body.post-page h3, body.home-page h3,
+body.post-page h4, body.home-page h4,
+body.post-page h5, body.home-page h5,
+body.post-page h6, body.home-page h6, 
+.post-title {
+  font-family: 'GNU Unifont', monospace;
+  color: #1D1E20; /* Black color for headings */
 }
 
-#main_content h3 {
-  font-size: 18px;
+body.post-page h1, body.home-page h1 {
+  font-size: 1.2rem; /* Adjust as needed */
 }
 
-#main_content h4 {
-  font-size: 14px;
+body.post-page h2, body.home-page h2 {
+  font-size: 1.1rem; /* Adjust as needed */
 }
 
-#main_content h5 {
-  font-size: 12px;
-  text-transform: uppercase;
-  margin: 0 0 5px 0;
+body.post-page h3, body.home-page h3 {
+  font-size: 1rem; /* Adjust as needed */
 }
 
-#main_content h6 {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #999;
-  margin: 0 0 5px 0;
+body.post-page h4, body.home-page h4 {
+  font-size: 0.9rem; /* Adjust as needed */
 }
 
-dt {
-  font-style: italic;
-  font-weight: bold;
+body.post-page h5, body.home-page h5 {
+  font-size: 0.8rem; /* Adjust as needed */
 }
 
-
-ul li {
-  //list-style-image:url('../assets/img/bullet.png');
-  list-style-type: disc;
+body.post-page h6, body.home-page h6 {
+  font-size: 0.7rem; /* Adjust as needed */
 }
 
-
-blockquote {
-  color: $blockquote-color;
-  padding-left: 10px;
-  border-left: 1px dotted $blockquote-border;
+body.post-page h1, body.post-page h2,
+body.post-page h3, body.post-page h4,
+body.post-page h5, body.post-page h6 {
+  text-decoration: underline;
 }
 
-pre {
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 10px;
-  font-size: 16px;
-  color: #00ff15;
-  border-radius: 2px;
-  text-wrap: normal;
-  overflow: auto;
-  overflow-y: hidden;
+// Apply Perfect DOS VGA 437 font to home page article titles
+.home-content .post-link {
+  font-family: 'Perfect DOS VGA 437', sans-serif;
 }
 
-code.highlighter-rouge {
-  background: rgba(0,0,0,0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 0px 3px;
-  margin: 0px -3px;
-  color: #aa759f;
-  border-radius: 2px;
+.site-header {
+  background-color: #333333;
+  padding: 1rem 0;
+  border-bottom: 2px solid #666666;
+  display: flex;
+  justify-content: center; // Changed from space-between to center
+  align-items: center;
 }
 
-table {
+.wrapper {
+  display: flex;
+  justify-content: center; // Changed from space-between to center
+  align-items: center;
   width: 100%;
-  margin: 0 0 20px 0;
+  padding: 0 1rem;
+  position: relative;
 }
 
-th {
-  text-align: left;
-  border-bottom: 1px dashed #b5e853;
-  padding: 5px 10px;
+.social-links {
+  position: absolute;
+  left: 1rem; /* Position the social links to the far left */
+  display: flex;
+  align-items: center;
 }
 
-td {
-  padding: 5px 10px;
-}
-
-hr {
-  height: 0;
-  border: 0;
-  border-bottom: 1px dashed #b5e853;
-  color: #b5e853;
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  background: -webkit-linear-gradient(top, rgba(40, 40, 40, 0.3), rgba(35, 35, 35, 0.3) 50%, rgba(10, 10, 10, 0.3) 50%, rgba(0, 0, 0, 0.3));
-  padding: 8px 18px;
-  border-radius: 50px;
-  border: 2px solid rgba(0, 0, 0, 0.7);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
-  border-top: 2px solid rgba(0, 0, 0, 1);
-  color: rgba(255, 255, 255, 0.8);
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  font-size: 13px;
+.social-links a {
+  color: white; /* Color for social icons */
+  margin-right: 1rem; /* Spacing between icons */
   text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-.btn:hover {
-  background: -webkit-linear-gradient(top, rgba(40, 40, 40, 0.6), rgba(35, 35, 35, 0.6) 50%, rgba(10, 10, 10, 0.8) 50%, rgba(0, 0, 0, 0.8));
+// Custom footer styles
+.site-footer {
+  background-color: #333333; /* Dark grey background for footer */
+  padding: 3rem 0; /* Add padding for spacing */
+  border-top: 2px solid #666666; /* Border at the top */
 }
 
-.btn .icon {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin: 1px 8px 0 0;
-  float: left;
-}
-
-.btn-github .icon {
-  opacity: 0.6;
-  background: url("../images/blacktocat.png") 0 0 no-repeat;
-}
-
-/* Links
- * a, a:hover, a:visited
-*/
-a {
-  color: #63c0f5;
-  text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
-}
-
-a:active, a:focus {
-  outline: 0;
-  border: none;
-  -moz-outline-style: none
-}
-
-/* Main logo */
-.main-logo {
+.site-title {
+  font-family: $heading-font-family;
+  color: #F0F0F0 !important; /* Lighter color for title */
+  font-size: 2rem; /* Increase font size */
+  text-align: center; /* Center align title */
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
-  -webkit-font-smoothing: antialiased;
 }
 
-/* Banner */
-.banner {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 70px;
-  width: 50%;
+// Custom styles for syntax highlighting
+.highlight pre, .highlight code {
+  font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  font-size: .95em; /* Ensure the font size for code blocks is consistent */
 }
 
-/* Clearfix */
-.cf:before, .cf:after {
-  content:"";
-  display:table;
+// Custom styles for inline code
+p code, li code, span code {
+  font-size: .875em; /* Smaller font size for inline code */
+  font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
 }
 
-.cf:after {
-  clear:both;
+.doc-icon {
+  width: 24px; /* Adjust size as needed */
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  margin-right: 0.5rem; /* Space between icon and post details */
+  vertical-align: middle; /* Align icon vertically with the text */
 }
 
-.cf {
-  zoom:1;
+.post-item {
+  margin-bottom: 1rem; /* Space between post items */
 }
 
-/* Make footer stick to bottom */
-.pagination, footer {
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
+.post-details {
+  display: flex;
+  align-items: center;
 }
 
-#wrapper {
-  min-height: calc(100vh - 100px);
+.post-details .post-link {
+  margin-left: 0.5rem; /* Space between icon and title */
+  font-size: 1rem; /* Adjust font size for titles */
+  color: white; /* White color for titles */
+}
+
+.post-list .post-meta {
+  margin-left: 0.5rem; /* Reduced space between title and date */
+  font-size: 0.875rem; /* Smaller font size for date */
+  color: white;
+}
+
+// Specific adjustments for post layout
+.post {
+  .post-header, .post-content {
+    padding: 0 1rem;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; // Slightly smaller base font size for mobile
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .social-links {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .site-title {
+    font-size: 1.5rem; /* Smaller font size for title */
+    width: 100%;
+    text-align: center;
+  }
+
+  .wrapper {
+    padding: 0;
+  }
+
+  .doc-icon {
+    width: 24px; /* Ensure consistent size on mobile */
+    height: 24px; /* Ensure consistent height */
+  }
+
+  .post-details {
+    display: flex;
+    align-items: center;
+  }
+
+  .post-item {
+    margin-bottom: 1rem; /* Adjust spacing between post items on mobile */
+  }
+
+  .main-content {
+    margin: 0;
+    padding: 0.5rem;
+    width: calc(100% - 1rem);
+    box-shadow: 3px 3px 0 #666666;
+  }
+
+  .post {
+    .post-header, .post-content {
+      padding: 0 0.5rem;
+    }
+  }
+
+  // Ensure text doesn't overflow
+  p, h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .post-title {
+    font-size: 1.5rem; // Smaller post title for mobile
+  }
+
+  .post-content {
+    h2 {
+      font-size: 1.25rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+    }
+    h4 {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Additional adjustments for very small screens
+@media (max-width: 480px) {
+  .main-content {
+    width: calc(100% - 1rem);
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+  }
+
+  .post-title {
+    font-size: 1.3rem;
+  }
+
+  .post-content {
+    h2 {
+      font-size: 1.2rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+    }
+    h4 {
+      font-size: 1rem;
+    }
+  }
 }
