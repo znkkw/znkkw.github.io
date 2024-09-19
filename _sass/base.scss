@@ -15,7 +15,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');<
 
-$body-background: $cod-grey !default;
+$body-background: /*$cod-grey*/ !default;
 $body-foreground: $gallery !default;
 $header: $conifer !default;
 $blockquote-color: $silver-chalice !default;
