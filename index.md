@@ -23,3 +23,4 @@ GPG Key Status : active
 [<img src="./assets/img/webring/grapheneos.gif">](https://grapheneos.org/) [<img src="./assets/img/webring/internetprivacy.gif">]() [<img src="./assets/img/webring/linux2.gif">](https://github.com/torvalds/linux) [<img src="./assets/img/webring/pgp.gif">](https://www.openpgp.org/)
 
 -------------------------------------------------------------------------
+[<img src="./assets/img/MM-HACKERS2.ANS.png">](https://16colo.rs/pack/mist0624/MM-HACKERS2.ANS)
